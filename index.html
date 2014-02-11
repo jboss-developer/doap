@@ -5,67 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Doap by jboss-developer</title>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <style>
+body {margin: 1em;}
+.repository {display: none;}
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Doap</h1>
-        <p>RDF + DOAP form and information about project metadata</p>
-
-        <p class="view"><a href="https://github.com/jboss-developer/doap">View the Project on GitHub <small>jboss-developer/doap</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/jboss-developer/doap/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/jboss-developer/doap/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/jboss-developer/doap">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/jboss-developer">jboss-developer</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+    <h2>What is this?</h2>
+    <p>
+      There have been many attempts in the past at centralizing project metadata within JBoss. 
+      This attempt uses the <a href="http://www.w3.org/RDF/">RDF standard</a> as the base and utilizes 
+      <a href="https://github.com/edumbill/doap/wiki">DOAP</a> and <a href="http://www.foaf-project.org/">FOAF</a> extensions.
+      These are standards used by many organizations including <a href="http://www-archive.mozilla.org/rdf/doc/">Mozilla</a>,
+      <a href="https://projects.apache.org/doap.html">Apache</a>, <a href="https://pypi.python.org/pypi">Python</a>, and 
+      <a href="http://xircles.codehaus.org/projects/jruby/doap">codehaus</a>. Moving forward, JBoss will also make use of
+      these standards for maintaining project metadata.
+    </p>
+    <h2>What do I need to do?</h2>
+    <p>
+      We have a <a href="form.html">form</a> for you to fill out which will create a basic DOAP file. Any customization after the
+      initial creation of the file is up to you. There are many other elements which are supported by RDF / DOAP which are not included
+      in the form such as maintainers, documentors, screenshots, and blog url. The linked form contains the values we will be using,
+      however, not every field is required. Required fields are indicated by your browser. The form makes use of HTML5 elements and
+      features. It has been tested in Chrome and Firefox. Most fields should be fairly self explanatory. Unless the field is a drop down
+      field the text is freeform. Fields which require a URL must contain a fully valid URL including protocol. For the logo field, please
+      use the 200x150 pixel logo provided by the design team for your project.
+    </p>
+    <p>
+      Once the form has been filled out, click the "Generate DOAP" button (any errors will be indicated) which will create the XML file and
+      will enable the "Download DOAP" button. Clicking the download button will download a "doap.rdf" file. Feel free to rename that file
+      if you see fit. You may also modify the file after generation. After you are happy with your file, please email <a href="mailto:help@jboss.org?subject=Request%20for%20adding%20project%20DOAP%20file">help@jboss.org</a> with your completed DOAP file.
+    </p>
+    <p><a href="form.html">Continue to form</a>
   </body>
 </html>

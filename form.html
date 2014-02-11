@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DOAP generator</title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+  <style>
+    body {margin: 1em;}
+    .repository {display: none;}
+  </style>
+</head>
+<body>
+  <h1>DOAP Form</h1>
+  <form id="doap-form" class="pure-form pure-form-aligned">
+    <div class="pure-g">
+      <div class="pure-u-1-4">
+        <div class="pure-control-group">
+          <label for="name">Project Name</label>
+          <input id="name" type="text" name="name" placeholder="Project Name" required>
+        </div>
+        <div class="pure-control-group">
+          <label for="shortdesc">Short Description</label>
+          <input type="text" id="shortdesc" name="shortdesc" placeholder="Short Description" required>
+        </div>
+        <div class="pure-control-group">
+          <label for="desc">Description</label>
+          <textarea id="desc" name="desc" placeholder="Description" required></textarea>
+        </div>
+        <div class="pure-control-group">
+          <label for="vendor">Vendor</label>
+          <input type="text" id="vendor" name="vendor" placeholder="Vendor" value="Red Hat JBoss">
+        </div>
+      </div>
+      <div class="pure-u-1-4">
+        <div class="pure-control-group">
+          <label for="homepage">Homepage</label>
+          <input id="homepage" type="url" name="homepage" placeholder="Homepage" required>
+        </div>
+        <div class="pure-control-group">
+          <label for="license">License</label>
+          <select id="license" name="license" required><option value="LGPL">LGPL</option><option value="ASL">APL</option><option value="EPL">EPL</option><option value="AGPL">AGPL</option><option value="MIT">MIT</option><option value="BSD">BSD</option></select>
+        </div>
+        <div class="pure-control-group">
+          <label for="language">Language</label>
+          <input id="language" type="text" name="language" placeholder="Language">
+        </div>
+        <div class="pure-control-group">
+          <label for="category">Category</label>
+          <input id="category" type="text" name="category" placeholder="Category">
+        </div>
+      </div> 
+      <div class="pure-u-1-4">
+        <div class="pure-control-group">
+          <label for="repositoryType">Repository Type</label>
+          <select id="repositorytype" name="repositoryType" required><option value="">Select One</option><option value="CVSRepository">CVS</option><option value="SVNRepository">SVN</option><option value="ArchRepository">Arch</option><option value="BKRepository">BitKeeper</option><option value="GitRepository">Git</option><option value="BazaarBranch">Bazar</option><option value="HgRepository">Mercurial</option><option value="DarcsRepository">Darcs</option></select>
+        </div>
+        <div id="repoLocationGroup" class="pure-control-group repository">
+          <label for="repoLocation">Repo URL</label>
+          <input type="url" name="repoLocation" placeholder="Repository URL">
+        </div>
+        <div id="repoBrowseGroup" class="pure-control-group">
+          <label for="repoBrowse">Browse URL</label>
+          <input type="url" name="repoBrowse" placeholder="Browse URL">
+        </div>
+        <div id="repoModuleGroup" class="pure-control-group repository">
+          <label for="repoModule">Module</label>
+          <input type="text" name="repoModule" placeholder="Module">
+        </div>
+        <div id="repoAnonRoot" class="pure-control-group repository">
+          <label for="repoAnonRoot">Anon Root</label>
+          <input type="text" name="repoAnonRoot" placeholder="Anon-Root">
+        </div>
+      </div>
+      <div class="pure-u-1-4">
+        <div class="pure-control-group">
+          <label for="issueDB">Issue DB URL</label>
+          <input id="issueDB" type="url" name="issueDB" placeholder="Issue DB URL">
+        </div>
+        <div class="pure-control-group">
+          <label for="wiki">Wiki URL</label>
+          <input id="wiki" type="url" name="wiki" placeholder="Wiki URL">
+        </div>
+        <div class="pure-control-group">
+          <label for="mailingListURL">Mailing List URL</label>
+          <input id="mailingListURL" type="url" name="mailingListURL" placeholder="Mailing List URL">
+        </div>
+        <div class="pure-control-group">
+          <label for="logoURL">Logo URL</label>
+          <input id="logoURL" type="url" name="logoURL" placeholder="Logo URL" required>
+        </div>
+      </div>
+    </div>
+    <fieldset id="versions">
+      <legend>Versions</legend>
+      <button id="addVersion" formnovalidate type="button">Add Version</button>
+      <div class="pure-g" id="insert-version-container"></div>
+    </fieldset>
+    <fieldset id="specs">
+      <legend>Specifications Implemented</legend>
+      <button id="addSpec" type="button" formnovalidate>Add Spec</button>
+      <div class="pure-g" id="insert-spec-container"></div>
+    </fieldset>
+    <button type="submit" id="submit-button" class="pure-button pure-button-primary">Generate DOAP</button>
+    <a id="download-button" disabled class="pure-button pure-button-disabled">Download DOAP</a>
+  </form>
+    
+  <script type="text/xml" id="doap_template"><?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xml:lang="en" xmlns="http://usefulinc.com/ns/doap#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <Project rdf:about="{{{homepage}}}">
+    <name>{{{name}}}</name>
+    <homepage rdf:resource="{{{homepage}}}" />
+    <description>{{{desc}}}</description>
+    <shortdesc>{{{shortdesc}}}</shortdesc>
+    <vendor>{{{vendor}}}</vendor>
+    <license rdf:resource="{{{licenseURL}}}" />
+    {{#language}}<programming-language>{{language}}</programming-language>{{/language}}
+    {{#category}}<category>{{{category}}}</category>{{/category}}
+    <foaf:logo rdf:resource="{{{logoURL}}}" />
+    <repository>
+      <{{repositoryType}}>
+        {{#repoLocation}}<location rdf:resource="{{{repoLocation}}}" />{{/repoLocation}}
+        {{#repoBrowse}}<browse rdf:resource="{{{repoBrowse}}}" />{{/repoBrowse}}
+        {{#repoModule}}<module>{{repoModule}}</module>{{/repoModule}}
+        {{#repoAnonRoot}}<anon-root>{{repoAnonRoot}}</anon-root>{{/repoAnonRoot}}
+      </{{repositoryType}}>
+    </repository>
+    {{#issueDB}}<bug-database rdf:resource="{{{issueDB}}}" />{{/issueDB}}
+    {{#mailingListURL}}<mailing-list rdf:resource="{{{mailingListURL}}}" />{{/mailingListURL}}
+    {{#releases}}
+    <release>
+      <Version>
+        <name>{{{releaseName}}}</name>
+        <revision>{{{revision}}}</revision>
+        <created>{{{created}}}</created>
+      </Version>
+    </release>
+    {{/releases}}
+    <implements>
+      {{#specs}}
+      <Specification>
+        <name>{{{specName}}}</name>
+        <description>{{{specDesc}}}</description>
+        <rdfs:seeAlso rdf:resource="{{{seeAlsoURL}}}"/>
+      </Specification>
+      {{/specs}}
+    </implements>
+  </Project>
+</rdf:RDF></script>
+  <script type="text/html" id="version_template"><div class="pure-u-1-3">
+      <div class="pure-control-group">
+        <label for="releaseName">Release Name</label>
+        <input type="text" name="releaseName" placeholder="Name"  required>
+      </div>
+      <div class="pure-control-group">
+        <label for="version">Revision</label>
+        <input type="text" name="revision" required>
+      </div>
+      <div class="pure-control-group">
+        <label for="created">Created Date</label>
+        <input type="date" name="created" required placeholder="YYYY-MM-DD">
+      </div>
+    </div></script>
+  <script type="text/html" id="spec_template"><div class="pure-u-1-3">
+      <div class="pure-control-group">
+        <label for="specName">Specification Name</label>
+        <input type="text" name="specName" placeholder="Spec Name" required>
+      </div>
+      <div class="pure-control-group">
+        <label for="specDesc">Specification Description</label>
+        <input type="text" name="specDecs" required>
+      </div>
+      <div class="pure-control-group">
+        <label for="seeAlsoURL">Specification URL</label>
+        <input type="url" name="seeAlsoURL">
+      </div>
+    </div></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+    // Event listener to add a new version
+    $('#addVersion').on('click', function() {
+      $('#insert-version-container').append($('#version_template').text());
+    });
+
+    // Event listener to add a new spec
+    $('#addSpec').on('click', function() {
+      $('#insert-spec-container').append($('#spec_template').text());
+    });
+
+    // Event listener to the submit button to generate the DOAP content based 
+    // on the form.
+    $('#submit-button').on('click', function(event) {
+      if ($('#doap-form')[0].checkValidity()) {
+        event.preventDefault();
+      } else {
+        return true;
+      }
+      var o = {'releases':[{}], 'specs':[{}]};
+      var release_names = ['releaseName', 'revision', 'created'];
+      var spec_names = ['specName', 'specDecs', 'seeAlsoURL'];
+      var a = $('#doap-form').serializeArray();
+      $.each(a, function() {
+        if (this.name) {
+          // check to see if it's a spec or version, then create an
+          // object for it and push the object to an array for
+          // use in the templates
+          if (release_names.indexOf(this.name) !== -1) {
+            var release = o.releases[o.releases.length - 1];
+            if (containsAll(release_names, Object.keys(release))) {
+              release = {};
+              o.releases.push(release);
+            }
+            release[this.name] = this.value || '';
+          } else if (spec_names.indexOf(this.name) !== -1) { 
+            var spec = o.specs[o.specs.length - 1];
+            if (containsAll(spec_names, Object.keys(spec))) {
+              spec = {};
+              o.specs.push(spec);
+            }
+            spec[this.name] = this.value || '';
+          } else {
+            o[this.name] = this.value || '';
+          }
+        }
+      });
+      if (o.releases.length === 1 && Object.keys(o.releases[0]).length === 0) {
+        o.releases = [];
+      }
+      if (o.specs.length === 1 && Object.keys(o.specs[0]).length === 0) {
+        o.specs = [];
+      }
+      var downloadButton = $('#download-button');
+      downloadButton.attr('href', 'data:application/rdf+xml;charset=utf-8,' + encodeURIComponent(Mustache.render($('#doap_template').text(), o))); 
+      downloadButton.attr('download', 'doap.rdf');
+      downloadButton.attr('disabled', false);
+      downloadButton.removeClass('pure-button-disabled');
+      return false;
+    });
+
+    // Utility function to check the existance of all needles with the haystack
+    function containsAll(needles, haystack) {
+      for(var i = 0 , len = needles.length; i < len; i++){
+        if($.inArray(needles[i], haystack) === -1) return false;
+      }
+      return true;
+    }
+
+    $('#repositorytype').on('change', function(event) {
+      // Hide everything so we don't get the wrong items if they change
+      // the type
+        $('.repository').each(function() { 
+          $(this).hide(); 
+          $('input', this).each(function() { 
+            $(this).attr('required', false); 
+          });
+        });
+      var selectedValue = $('option:selected', this).val();
+      if (selectedValue === 'CVSRepository' || selectedValue === 'BKRepository' || selectedValue === 'ArchRepository') {
+        var moduleGroup = $('#repoModuleGroup');
+        moduleGroup.toggle();
+        $('input', moduleGroup).attr('required', true);
+        if (selectedValue === 'CVSRepository') {
+          var anonRoot = $('#repoAnonRoot');
+          anonRoot.toggle();
+          $('input', anonRoot).attr('required', true); 
+        }
+      } else {
+        var locationGroup = $('#repoLocationGroup');
+        locationGroup.toggle();
+        $('input', locationGroup).attr('required', true);
+      } 
+    });
+  </script>
+</body>
+</html>
+
