@@ -100,6 +100,11 @@
       <button id="addSpec" type="button" formnovalidate>Add Spec</button>
       <div class="pure-g" id="insert-spec-container"></div>
     </fieldset>
+    <fieldset id="accounts">
+      <legend>Online Account</legend>
+      <button id="addOnlineAccount" type="button" formnovalidate>Add Online Account</button>
+      <div class="pure-g" id="insert-account-container"></div>
+    </fieldset>
     <button type="submit" id="submit-button" class="pure-button pure-button-primary">Generate DOAP</button>
     <a id="download-button" disabled class="pure-button pure-button-disabled">Download DOAP</a>
   </form>
@@ -144,6 +149,15 @@
       </Specification>
       {{/specs}}
     </implements>
+    {{#accounts}}
+    <foaf:account>
+      <foaf:OnlineAccount>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/OnlineChatAccount"/>
+        <foaf:accountServiceHomepage rdf:resource="{{serviceHomepage}}"/>
+        <foaf:accountName>{{accountName}}</foaf:accountName>
+      </foaf:OnlineAccount>
+    </foaf:account>
+    {{/accounts}}
   </Project>
 </rdf:RDF></script>
   <script type="text/html" id="version_template"><div class="pure-u-1-3">
@@ -174,6 +188,16 @@
         <input type="url" name="seeAlsoURL">
       </div>
     </div></script>
+  <script type="text/html" id="account_template"><div class="pure-u-1-3">
+      <div class="pure-control-group">
+        <label for="serviceHomepage">Service Homepage</label>
+        <input type="url" name="serviceHomepage" placeholder="Service Homepage" required>
+      </div>
+      <div class="pure-control-group">
+        <label for="accountName">Account Name</label>
+        <input type="text" name="accountName" required>
+      </div>
+    </div></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
   <script type="text/javascript">
@@ -187,6 +211,11 @@
       $('#insert-spec-container').append($('#spec_template').text());
     });
 
+    // Event listener to add a new spec
+    $('#addOnlineAccount').on('click', function() {
+      $('#insert-account-container').append($('#account_template').text());
+    });
+
     // Event listener to the submit button to generate the DOAP content based 
     // on the form.
     $('#submit-button').on('click', function(event) {
@@ -195,10 +224,11 @@
       } else {
         return true;
       }
-      var o = {'releases':[{}], 'specs':[{}]};
-      var release_names = ['releaseName', 'revision', 'created'];
-      var spec_names = ['specName', 'specDecs', 'seeAlsoURL'];
-      var a = $('#doap-form').serializeArray();
+      var o = {'releases':[{}], 'specs':[{}], 'accounts':[{}]},
+          release_names = ['releaseName', 'revision', 'created'],
+          spec_names = ['specName', 'specDecs', 'seeAlsoURL'],
+          account_names = ['accountName', 'serviceHomepage'],
+          a = $('#doap-form').serializeArray();
       $.each(a, function() {
         if (this.name) {
           // check to see if it's a spec or version, then create an
@@ -218,6 +248,13 @@
               o.specs.push(spec);
             }
             spec[this.name] = this.value || '';
+          } else if (account_names.indexOf(this.name) !== -1) {
+            var account = o.accounts[o.accounts.length - 1];
+            if (containsAll(account_names, Object.keys(account))) {
+              account = {};
+              o.accounts.push(account);
+            }
+            account[this.name] = this.value || '';
           } else {
             o[this.name] = this.value || '';
           }
@@ -228,6 +265,9 @@
       }
       if (o.specs.length === 1 && Object.keys(o.specs[0]).length === 0) {
         o.specs = [];
+      }
+      if (o.accounts.length === 1 && Object.keys(o.accounts[0]).length === 0) {
+        o.accounts = [];
       }
       var downloadButton = $('#download-button');
       downloadButton.attr('href', 'data:application/rdf+xml;charset=utf-8,' + encodeURIComponent(Mustache.render($('#doap_template').text(), o))); 
