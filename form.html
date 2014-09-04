@@ -90,6 +90,41 @@
         </div>
       </div>
     </div>
+    <h2>People</h2>
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="pure-control-group">
+          <label for="first-name">First Name</label>
+          <input id="first-name" name="first-name" placeholder="First Name" required>
+        </div>
+        <div class="pure-control-group">
+          <label for="last-name">Last Name</label>
+          <input id="last-name" name="last-name" placeholder="Last Name" required>
+        </div>
+        <div class="pure-control-group">
+          <label for="community-account">Community Account</label>
+          <input id="community-account" name="community-account" placeholder="Community Account Username">
+        </div>
+        <!-- TODO: roles supported: tester, documentation, lead, developer, lead is also a maintainer-->
+        <div class="pure-control-group">
+          <label for="role">Role within the project (must have at least one Lead)</label>
+          <select id="role" name="role">
+            <option value="lead">Lead</option>
+            <option value="documenter">Documenter</option>
+            <option value="tester">Tester</option>
+            <option value="developer">Developer</option>
+          </select>
+        </div>
+        <!-- TODO: We need to clear the inputs after an add -->
+        <button id="addPerson" class="pure-button" formnovalidate type="button">Add Person</button>
+      </div>
+      <div class="pure-u-1-3">
+        <div class="pure-control-group">
+          <label for="people-container">People Added</label>
+          <select id="people-container" name="people-container"></select>
+        </div>
+      </div>
+    </div>
     <fieldset id="versions">
       <legend>Versions</legend>
       <button id="addVersion" formnovalidate type="button">Add Version</button>
@@ -158,6 +193,7 @@
       </foaf:OnlineAccount>
     </foaf:account>
     {{/accounts}}
+    <!-- TODO: add in people -->
   </Project>
 </rdf:RDF></script>
   <script type="text/html" id="version_template"><div class="pure-u-1-3">
@@ -216,6 +252,11 @@
       $('#insert-account-container').append($('#account_template').text());
     });
 
+
+    $('#addPerson').on('click', function() {
+      // TODO: add event handler
+    });
+
     // Event listener to the submit button to generate the DOAP content based 
     // on the form.
     $('#submit-button').on('click', function(event) {
@@ -228,6 +269,7 @@
           release_names = ['releaseName', 'revision', 'created'],
           spec_names = ['specName', 'specDecs', 'seeAlsoURL'],
           account_names = ['accountName', 'serviceHomepage'],
+          people_names = ['first_name', 'last-name', 'community-account', 'role'],
           a = $('#doap-form').serializeArray();
       $.each(a, function() {
         if (this.name) {
@@ -253,6 +295,13 @@
             if (containsAll(account_names, Object.keys(account))) {
               account = {};
               o.accounts.push(account);
+            }
+            account[this.name] = this.value || '';
+          } else if (people_names.indexOf(this.name) !== -1) {
+            var person = o.people[o.people.length - 1];
+            if (containsAll(people_names, Object.keys(person))) {
+              person = {};
+              o.people.push(person);
             }
             account[this.name] = this.value || '';
           } else {
