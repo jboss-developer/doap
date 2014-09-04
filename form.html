@@ -108,7 +108,8 @@
         <!-- TODO: roles supported: tester, documentation, lead, developer, lead is also a maintainer-->
         <div class="pure-control-group">
           <label for="role">Role within the project (must have at least one Lead)</label>
-          <select id="role" name="role">
+          <select id="role" name="role" required>
+            <option value="">Select one</option>
             <option value="lead">Lead</option>
             <option value="documenter">Documenter</option>
             <option value="tester">Tester</option>
@@ -116,28 +117,28 @@
           </select>
         </div>
         <!-- TODO: We need to clear the inputs after an add -->
-        <button id="addPerson" class="pure-button" formnovalidate type="button">Add Person</button>
+        <button id="addPerson" class="pure-button" formnovalidate>Add Person</button>
       </div>
       <div class="pure-u-1-3">
         <div class="pure-control-group">
           <label for="people-container">People Added</label>
-          <select id="people-container" name="people-container"></select>
+          <select id="people-container" name="people-container" multiple></select>
         </div>
       </div>
     </div>
     <fieldset id="versions">
       <legend>Versions</legend>
-      <button id="addVersion" formnovalidate type="button">Add Version</button>
+      <button id="addVersion" formnovalidate>Add Version</button>
       <div class="pure-g" id="insert-version-container"></div>
     </fieldset>
     <fieldset id="specs">
       <legend>Specifications Implemented</legend>
-      <button id="addSpec" type="button" formnovalidate>Add Spec</button>
+      <button id="addSpec" formnovalidate>Add Spec</button>
       <div class="pure-g" id="insert-spec-container"></div>
     </fieldset>
     <fieldset id="accounts">
       <legend>Online Account</legend>
-      <button id="addOnlineAccount" type="button" formnovalidate>Add Online Account</button>
+      <button id="addOnlineAccount" formnovalidate>Add Online Account</button>
       <div class="pure-g" id="insert-account-container"></div>
     </fieldset>
     <button type="submit" id="submit-button" class="pure-button pure-button-primary">Generate DOAP</button>
@@ -252,9 +253,24 @@
       $('#insert-account-container').append($('#account_template').text());
     });
 
-
-    $('#addPerson').on('click', function() {
+    $('#addPerson').on('click', function(event) {
+      event.preventDefault();
       // TODO: add event handler
+      var firstName = $('#first-name'),
+          lastName = $('#last-name'),
+          communityAccount = $('#community-account'),
+          role = $('#role');
+
+      // Add to the selection
+      $('#people-container').append('<option data-first-name="' + firstName.val() + 
+          '" data-last-name="' + lastName.val() +'" data-role="' + role.val() + 
+          '" data-community="' + communityAccount.val() + '">' + firstName.val() + ' ' + lastName.val() + '</option>');
+
+      // Clear the values
+      firstName.val('');
+      lastName.val('');
+      communityAccount.val('');
+      role.val('');
     });
 
     // Event listener to the submit button to generate the DOAP content based 
