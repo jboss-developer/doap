@@ -129,17 +129,17 @@
     </div>
     <fieldset id="versions">
       <legend>Versions</legend>
-      <button id="addVersion" formnovalidate>Add Version</button>
+      <a id="addVersion" class="pure-button" href="#">Add Version</a>
       <div class="pure-g" id="insert-version-container"></div>
     </fieldset>
     <fieldset id="specs">
       <legend>Specifications Implemented</legend>
-      <button id="addSpec" formnovalidate>Add Spec</button>
+      <a id="addSpec" class="pure-button" href="#">Add Spec</a>
       <div class="pure-g" id="insert-spec-container"></div>
     </fieldset>
     <fieldset id="accounts">
       <legend>Online Account</legend>
-      <button id="addOnlineAccount" formnovalidate>Add Online Account</button>
+      <a id="addOnlineAccount" class="pure-button" herf="#">Add Online Account</a>
       <div class="pure-g" id="insert-account-container"></div>
     </fieldset>
     <button type="submit" id="submit-button" class="pure-button pure-button-primary">Generate DOAP</button>
@@ -151,23 +151,119 @@
   <Project rdf:about="{{{homepage}}}">
     <name>{{{name}}}</name>
     <homepage rdf:resource="{{{homepage}}}" />
-    <description>{{{desc}}}</description>
     <shortdesc>{{{shortdesc}}}</shortdesc>
-    <vendor>{{{vendor}}}</vendor>
-    <license rdf:resource="{{{licenseURL}}}" />
-    {{#language}}<programming-language>{{language}}</programming-language>{{/language}}
-    {{#category}}<category>{{{category}}}</category>{{/category}}
-    <foaf:logo rdf:resource="{{{logoURL}}}" />
-    <repository>
-      <{{repositoryType}}>
-        {{#repoLocation}}<location rdf:resource="{{{repoLocation}}}" />{{/repoLocation}}
-        {{#repoBrowse}}<browse rdf:resource="{{{repoBrowse}}}" />{{/repoBrowse}}
-        {{#repoModule}}<module>{{repoModule}}</module>{{/repoModule}}
-        {{#repoAnonRoot}}<anon-root>{{repoAnonRoot}}</anon-root>{{/repoAnonRoot}}
-      </{{repositoryType}}>
-    </repository>
-    {{#issueDB}}<bug-database rdf:resource="{{{issueDB}}}" />{{/issueDB}}
+    <description>{{{desc}}}</description>
     {{#mailingListURL}}<mailing-list rdf:resource="{{{mailingListURL}}}" />{{/mailingListURL}}
+    {{#lead}}
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>{{{firstName}}} {{{lastName}}}</foaf:name>
+        <foaf:status>Project Lead</foaf:status>
+        <foaf:firstName>{{{firstName}}}</foaf:firstName>
+        <foaf:lastName>{{{lastName}}}</foaf:lastName>
+        {{#community}}
+        <foaf:account>
+          <foaf:OnlineAccount>
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <foaf:accountName>{{{community}}}</foaf:accountName>
+          </foaf:OnlineAccount>
+        </foaf:account>
+        {{/community}}
+      </foaf:Person>
+    </maintainer>
+    {{/lead}}
+    {{#developer}}
+    <developer>
+      <foaf:Person>
+        <foaf:name>{{{firstName}}} {{{lastName}}}</foaf:name>
+        <foaf:firstName>{{{firstName}}}</foaf:firstName>
+        <foaf:lastName>{{{lastName}}}</foaf:lastName>
+        {{#community}}
+        <foaf:account>
+          <foaf:OnlineAccount>
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <foaf:accountName>{{{community}}}</foaf:accountName>
+          </foaf:OnlineAccount>
+        </foaf:account>
+        {{/community}}
+      </foaf:Person>
+    </developer>
+    {{/developer}}
+    {{#documenter}}
+    <documenter>
+      <foaf:Person>
+        <foaf:name>{{{firstName}}} {{{lastName}}}</foaf:name>
+        <foaf:firstName>{{{firstName}}}</foaf:firstName>
+        <foaf:lastName>{{{lastName}}}</foaf:lastName>
+        {{#community}}
+        <foaf:account>
+          <foaf:OnlineAccount>
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <foaf:accountName>{{{community}}}</foaf:accountName>
+          </foaf:OnlineAccount>
+        </foaf:account>
+        {{/community}}
+      </foaf:Person>
+    </documenter>
+    {{/documenter}}
+    {{#translator}}
+    <translator>
+      <foaf:Person>
+        <foaf:name>{{{firstName}}} {{{lastName}}}</foaf:name>
+        <foaf:firstName>{{{firstName}}}</foaf:firstName>
+        <foaf:lastName>{{{lastName}}}</foaf:lastName>
+        {{#community}}
+        <foaf:account>
+          <foaf:OnlineAccount>
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <foaf:accountName>{{{community}}}</foaf:accountName>
+          </foaf:OnlineAccount>
+        </foaf:account>
+        {{/community}}
+      </foaf:Person>
+    </translator>
+    {{/translator}}
+    {{#tester}}
+    <tester>
+      <foaf:Person>
+        <foaf:name>{{{firstName}}} {{{lastName}}}</foaf:name>
+        <foaf:firstName>{{{firstName}}}</foaf:firstName>
+        <foaf:lastName>{{{lastName}}}</foaf:lastName>
+        {{#community}}
+        <foaf:account>
+          <foaf:OnlineAccount>
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <foaf:accountName>{{{community}}}</foaf:accountName>
+          </foaf:OnlineAccount>
+        </foaf:account>
+        {{/community}}
+      </foaf:Person>
+    </tester>
+    {{/tester}}
+    {{#helper}}
+    <helper>
+      <foaf:Person>
+        <foaf:name>{{{firstName}}} {{{lastName}}}</foaf:name>
+        <foaf:firstName>{{{firstName}}}</foaf:firstName>
+        <foaf:lastName>{{{lastName}}}</foaf:lastName>
+        {{#community}}
+        <foaf:account>
+          <foaf:OnlineAccount>
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <foaf:accountName>{{{community}}}</foaf:accountName>
+          </foaf:OnlineAccount>
+        </foaf:account>
+        {{/community}}
+      </foaf:Person>
+    </helper>
+    {{/helper}}
+    {{#category}}<category>{{{category}}}</category>{{/category}}
     {{#releases}}
     <release>
       <Version>
@@ -177,6 +273,19 @@
       </Version>
     </release>
     {{/releases}}
+    <license rdf:resource="{{{licenseURL}}}" />
+    <repository>
+      <{{repositoryType}}>
+        {{#repoLocation}}<location rdf:resource="{{{repoLocation}}}" />{{/repoLocation}}{{^repoLocation}}{{/repoLocation}}
+        {{#repoBrowse}}<browse rdf:resource="{{{repoBrowse}}}" />{{/repoBrowse}}{{^repoBrowse}}{{/repoBrowse}}
+        {{#repoModule}}<module>{{repoModule}}</module>{{/repoModule}}{{^repoModule}}{{/repoModule}}
+        {{#repoAnonRoot}}<anon-root>{{repoAnonRoot}}</anon-root>{{/repoAnonRoot}}{{^repoAnonRoot}}{{/repoAnonRoot}}
+      </{{repositoryType}}>
+    </repository>
+    {{#issueDB}}<bug-database rdf:resource="{{{issueDB}}}" />{{/issueDB}}
+    {{#wiki}}<wiki rdf:resource="{{{wiki}}}" />{{/wiki}}{{^wiki}}{{/wiki}}
+    {{#language}}<programming-language>{{language}}</programming-language>{{/language}}
+    <vendor>{{{vendor}}}</vendor>
     <implements>
       {{#specs}}
       <Specification>
@@ -186,6 +295,7 @@
       </Specification>
       {{/specs}}
     </implements>
+    <foaf:logo rdf:resource="{{{logoURL}}}" />
     {{#accounts}}
     <foaf:account>
       <foaf:OnlineAccount>
@@ -195,7 +305,6 @@
       </foaf:OnlineAccount>
     </foaf:account>
     {{/accounts}}
-    <!-- TODO: add in people -->
   </Project>
 </rdf:RDF></script>
   <script type="text/html" id="version_template"><div class="pure-u-1-3">
@@ -264,8 +373,8 @@
 
       if (firstName.val().length !== 0 && lastName.val().length !== 0 && role.val().length !== 0) {
         // Add to the selection
-        $('#people-container').append('<option data-first-name="' + firstName.val() +
-            '" data-last-name="' + lastName.val() +'" data-role="' + role.val() +
+        $('#people-container').append('<option data-first-name="' + firstName.val() + 
+            '" data-last-name="' + lastName.val() +'" data-role="' + role.val() + 
             '" data-community="' + communityAccount.val() + '">' + firstName.val() + ' ' + lastName.val() + '</option>');
 
         // Clear the values
@@ -284,7 +393,7 @@
       } else {
         return true;
       }
-      var o = {'releases':[{}], 'specs':[{}], 'accounts':[{}], },
+      var o = {'releases':[{}], 'specs':[{}], 'accounts':[{}]},
           release_names = ['releaseName', 'revision', 'created'],
           spec_names = ['specName', 'specDecs', 'seeAlsoURL'],
           account_names = ['accountName', 'serviceHomepage'],
@@ -317,12 +426,28 @@
             }
             account[this.name] = this.value || '';
           } else if (people_names.indexOf(this.name) !== -1) {
-            continue; // people will be handled differently
+            // people will be handled differently
           } else {
             o[this.name] = this.value || '';
           }
-        }
+        } 
       });
+
+      // Adding people
+      $("#people-container > option").each(function() {
+        var elm = $(this),
+            role = $(this).data("role");
+
+          if (typeof o[role] === "undefined") {
+            o[role] = [];
+          }
+          var person = { firstName : elm.data("first-name"), 
+                         lastName : elm.data("last-name"), 
+                         community : elm.data("community")
+          };
+          o[role].push(person);
+      });
+
       if (o.releases.length === 1 && Object.keys(o.releases[0]).length === 0) {
         o.releases = [];
       }
