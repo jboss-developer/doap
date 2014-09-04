@@ -114,6 +114,8 @@
             <option value="documenter">Documenter</option>
             <option value="tester">Tester</option>
             <option value="developer">Developer</option>
+            <option value="helper">Helper</option>
+            <option value="translator">Translator</option>
           </select>
         </div>
         <!-- TODO: We need to clear the inputs after an add -->
@@ -281,7 +283,7 @@
       } else {
         return true;
       }
-      var o = {'releases':[{}], 'specs':[{}], 'accounts':[{}]},
+      var o = {'releases':[{}], 'specs':[{}], 'accounts':[{}], },
           release_names = ['releaseName', 'revision', 'created'],
           spec_names = ['specName', 'specDecs', 'seeAlsoURL'],
           account_names = ['accountName', 'serviceHomepage'],
@@ -314,12 +316,7 @@
             }
             account[this.name] = this.value || '';
           } else if (people_names.indexOf(this.name) !== -1) {
-            var person = o.people[o.people.length - 1];
-            if (containsAll(people_names, Object.keys(person))) {
-              person = {};
-              o.people.push(person);
-            }
-            account[this.name] = this.value || '';
+            continue; // people will be handled differently
           } else {
             o[this.name] = this.value || '';
           }
