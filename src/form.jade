@@ -10,6 +10,8 @@ html(lang="en")
   body
     h1 DOAP Form
     include partials/form.jade
+    script(id="rdf_template" type="text/html")
+      include templates/rdf.mst
     script(id="version_template" type="text/html")
       include templates/version.mst
     script(id=spec_template type="text/html")
