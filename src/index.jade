@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="chrome=1")
+    title Doap by jboss-developer
+    link(rel="stylesheet", href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css")
+    style.
+      body {margin: 1em;}
+      .repository {display: none;}
+    meta(name="viewport", content="width=device-width, initial-scale=1, user-scalable=no")
+    //if lt IE 9
+      script(src="//html5shiv.googlecode.com/svn/trunk/html5.js")
+  body
+    h2 What is this?
+    p
+      | There have been many attempts in the past at centralizing project metadata within JBoss.
+      | This attempt uses the
+      a(href="http://www.w3.org/RDF/") RDF standard
+      | as the base and utilizes
+      a(href="https://github.com/edumbill/doap/wiki") DOAP
+      | and
+      a(href="http://www.foaf-project.org/") FOAF
+      | extensions.
+      | These are standards used by many organizations including
+      a(href="http://www-archive.mozilla.org/rdf/doc/") Mozilla
+      | ,
+      a(href="https://projects.apache.org/doap.html") Apache
+      | ,
+      a(href="https://pypi.python.org/pypi") Python
+      | , and
+      a(href="http://xircles.codehaus.org/projects/jruby/doap") codehaus
+      | . Moving forward, JBoss will also make use of
+      | these standards for maintaining project metadata.
+    h2 What do I need to do?
+    p
+      | We have a
+      a(href="form.html") form
+      | for you to fill out which will create a basic DOAP file. Any customization after the
+      | initial creation of the file is up to you. There are many other elements which are supported by RDF / DOAP which are not included
+      | in the form such as maintainers, documentors, screenshots, and blog url. The linked form contains the values we will be using,
+      | however, not every field is required. Required fields are indicated by your browser. The form makes use of HTML5 elements and
+      | features. It has been tested in Chrome and Firefox. Most fields should be fairly self explanatory. Unless the field is a drop down
+      | field the text is freeform. Fields which require a URL must contain a fully valid URL including protocol. For the logo field, please
+      | use the 200x150 pixel logo provided by the design team for your project.
+    p
+      | Once the form has been filled out, click the "Generate DOAP" button (any errors will be indicated) which will create the XML file and
+      | will enable the "Download DOAP" button. Clicking the download button will download a "doap.rdf" file. Feel free to rename that file
+      | if you see fit. You may also modify the file after generation. After you are happy with your file, please email
+      a(href="mailto:help@jboss.org?subject=Request%20for%20adding%20project%20DOAP%20file") help@jboss.org
+      | with your completed DOAP file.
+    p
+      a(href="form.html") Continue to form
+

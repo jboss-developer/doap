@@ -1,0 +1,41 @@
+{
+  "name": "doap",
+  "version": "1.0.0",
+  "description": "A DOAP generator for Red Hat JBoss projects",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-gh-pages": "^0.3.4",
+    "gulp-jade": "^0.8.0",
+    "gulp-karma": "^0.0.4",
+    "gulp-rimraf": "^0.1.0",
+    "gulp-util": "^3.0.1",
+    "karma": "~0.12.0",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-jade-preprocessor": "0.0.11",
+    "karma-jasmine": "^0.2.2",
+    "karma-jasmine-jquery": "^0.1.0",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "main-bower-files": "^2.0.0"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jboss-developer/doap.git"
+  },
+  "keywords": [
+    "doap",
+    "Red Hat",
+    "JBoss"
+  ],
+  "author": "Jason Porter <lightguard.jp@gmail.com>",
+  "license": "ASL 2.0",
+  "bugs": {
+    "url": "https://github.com/jboss-developer/doap/issues"
+  },
+  "homepage": "https://github.com/jboss-developer/doap"
+}

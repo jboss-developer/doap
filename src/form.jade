@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title DOAP generator
+    link(rel="stylesheet", href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css")
+    style.
+      body {margin: 1em;}
+      .repository {display: none;}
+  body
+    h1 DOAP Form
+    include partials/form.jade
+    script(id="version_template" type="text/html")
+      include templates/version.mst
+    script(id=spec_template type="text/html")
+      include templates/spec.mst
+    script(id=account_template type="text/html")
+      include templates/account.mst
+    script(src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js")
+    script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js")
+    script(src="scripts/doap-form.js")
+
