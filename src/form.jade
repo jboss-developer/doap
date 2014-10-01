@@ -2,13 +2,9 @@ doctype html
 html(lang="en")
   head
     meta(charset="UTF-8")
-    title DOAP generator
-    link(rel="stylesheet", href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css")
-    style.
-      body {margin: 1em;}
-      .repository {display: none;}
+    title DOAP generator form
+    link(rel="stylesheet", href="styles/foundation.css")
   body
-    h1 DOAP Form
     include partials/form.jade
     script(id="rdf_template" type="text/html")
       include templates/rdf.mst

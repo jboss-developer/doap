@@ -107,15 +107,13 @@ $('#submit-button').on('click', function(event) {
   if (o.accounts.length === 1 && Object.keys(o.accounts[0]).length === 0) {
     o.accounts = [];
   }
-  var downloadButton = $('#download-button');
-  $.get('templates/rdf.mst', function(template) {
-      console.debug(template);
-      var rdf = Mustache.render(template, o);
-      downloadButton.attr('href', 'data:application/rdf+xml;charset=utf-8,' + encodeURIComponent(rdf)); 
-      downloadButton.attr('download', 'doap.rdf');
-      downloadButton.attr('disabled', false);
-      downloadButton.removeClass('pure-button-disabled');
-  }, 'text');
+  var downloadButton = $('#download-button'),
+      template = $('#rdf_template').text(),
+      rdf = Mustache.render(template, o);
+  downloadButton.attr('href', 'data:application/rdf+xml;charset=utf-8,' + encodeURIComponent(rdf)); 
+  downloadButton.attr('download', 'doap.rdf');
+  downloadButton.attr('disabled', false);
+  downloadButton.removeClass('pure-button-disabled');
   return false;
 });
 

@@ -1,0 +1,19 @@
+{
+  "name": "doap",
+  "version": "1.0.0",
+  "homepage": "https://github.com/jboss-developer/doap",
+  "authors": [
+    "LightGuard <lightguard.jp@gmail.com>"
+  ],
+  "license": "ASL 2.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "spec"
+  ],
+  "dependencies": {
+    "foundation": "~5.4.5"
+  }
+}
