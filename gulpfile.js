@@ -26,12 +26,8 @@ gulp.task('compile-jade', function() {
 
 gulp.task('compile-scripts', function() {
   gulp.src('./src/scripts/*')
-    .pipe(uglify())
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/scripts/'));
   gulp.src(mainBowerFiles({filter: /\.js$/i}))
-    .pipe(uglify())
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/scripts/'));
 });
 
