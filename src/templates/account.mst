@@ -1,10 +1,13 @@
-<div class="pure-u-1-3">
-  <div class="pure-control-group">
-    <label for="serviceHomepage">Service Homepage</label>
-    <input type="url" name="serviceHomepage" placeholder="Service Homepage" required>
-  </div>
-  <div class="pure-control-group">
-    <label for="accountName">Account Name</label>
-    <input type="text" name="accountName" required>
-  </div>
+<div class="small-3 columns">
+  <fieldset>
+    <legend>Account</legend>
+    <label for="serviceHomepage">Service URL
+      <small>Required</small>
+      <input type="url" name="serviceHomepage" placeholder="http://twitter.com" required>
+    </label>
+    <label for="accountName">Account Name
+      <small>Required</small>
+      <input type="text" name="accountName" required>
+    </label>
+  </fieldset>
 </div>

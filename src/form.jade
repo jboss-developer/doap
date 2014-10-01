@@ -5,16 +5,19 @@ html(lang="en")
     title DOAP generator form
     link(rel="stylesheet", href="styles/foundation.css")
   body
-    include partials/form.jade
+    include partials/doap-entry.jade
     script(id="rdf_template" type="text/html")
       include templates/rdf.mst
     script(id="version_template" type="text/html")
       include templates/version.mst
-    script(id=spec_template type="text/html")
+    script(id="spec_template" type="text/html")
       include templates/spec.mst
-    script(id=account_template type="text/html")
+    script(id="account_template" type="text/html")
       include templates/account.mst
-    script(src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js")
-    script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js")
+    script(src="scripts/foundation.js")
     script(src="scripts/doap-form.js")
+    script
+      | $(document).foundation();
 

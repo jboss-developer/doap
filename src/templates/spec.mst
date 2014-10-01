@@ -1,14 +1,16 @@
-<div class="pure-u-1-3">
-  <div class="pure-control-group">
-    <label for="specName">Specification Name</label>
-    <input type="text" name="specName" placeholder="Spec Name" required>
-  </div>
-  <div class="pure-control-group">
-    <label for="specDesc">Specification Description</label>
-    <input type="text" name="specDecs" required>
-  </div>
-  <div class="pure-control-group">
-    <label for="seeAlsoURL">Specification URL</label>
-    <input type="url" name="seeAlsoURL">
-  </div>
+<div class="small-3 columns">
+  <fieldset>
+    <legend>Specification</legend>
+    <label for="specName">Name
+      <small>Required</small>
+      <input type="text" name="specName" placeholder="Spec Name" required>
+    </label>
+    <label for="specDesc">Description
+      <small>Required</small>
+      <input type="text" name="specDecs" required>
+    </label>
+    <label for="seeAlsoURL">URL
+      <input type="url" name="seeAlsoURL">
+    </label>
+  </fieldset>
 </div>
