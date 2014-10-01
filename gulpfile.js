@@ -3,12 +3,12 @@
 // gulp plugins
 var gulp           = require('gulp'),
     gutil          = require('gulp-util'),
+    webserver      = require('gulp-webserver'),
     del            = require('del'),
     deploy         = require('gulp-gh-pages'),
     uglify         = require('gulp-uglify'),
     sourcemaps     = require('gulp-sourcemaps'),
     //jshint         = require('gulp-jshint'),
-    //usemin         = require('gulp-usemin'),
     //googlecdn = require('gulp-google-cdn'),
     //karma          = require('gulp-karma'),
     mainBowerFiles = require('main-bower-files'),
@@ -19,9 +19,9 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('compile-jade', function() {
-  gulp.src('./src/*.jade')
+  gulp.src('src/*.jade')
     .pipe(jade({}))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('compile-scripts', function() {
@@ -44,11 +44,25 @@ gulp.task('compile-css', function() {
 gulp.task('compile', ['compile-jade','compile-css','compile-scripts'], function() {});
 
 gulp.task('deploy', ['compile'], function () {
-    gulp.src("./dist/**/*")
-        .pipe(deploy(options));
+  // TODO fix this 
+  gulp.src("./dist/**/*")
+    .pipe(deploy());
 });
 
-gulp.task('default', ['deploy'], function () {});
+gulp.task('server', function(next) {
+  gulp.src('dist')
+    .pipe(webserver({
+      livereload: true
+    }));
+});
+
+gulp.task('watch', function() {
+  gulp.watch(['src/*.jade','src/**/*.jade','src/**/*.mst'], ['compile-jade']);
+  gulp.watch('src/**/*.js', ['compile-scripts']);
+});
+
+gulp.task('default', ['server','watch','compile'], function () {});
+//gulp.task('default', ['watch'], function () {});
 
 //var testFiles = ['spec/*.js'];
 
