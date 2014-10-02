@@ -15,7 +15,7 @@ var gulp           = require('gulp'),
     jade           = require('gulp-jade');
 
 gulp.task('clean', function (cb) {
-  return del(['dist/**'], cb);
+  del(['dist/**'], cb);
 });
 
 gulp.task('compile-jade', function() {
@@ -40,7 +40,7 @@ gulp.task('compile-css', function() {
 gulp.task('compile', ['compile-jade','compile-css','compile-scripts'], function() {});
 
 gulp.task('deploy', ['compile'], function () {
-  gulp.src("dist/**/*")
+  return gulp.src("dist/**/*")
     .pipe(deploy());
 });
 
