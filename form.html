@@ -1,152 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>DOAP generator</title>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
-  <style>
-    body {margin: 1em;}
-    .repository {display: none;}
-  </style>
-</head>
-<body>
-  <h1>DOAP Form</h1>
-  <form id="doap-form" class="pure-form pure-form-aligned">
-    <div class="pure-g">
-      <div class="pure-u-1-4">
-        <div class="pure-control-group">
-          <label for="name">Project Name</label>
-          <input id="name" type="text" name="name" placeholder="Project Name" required>
-        </div>
-        <div class="pure-control-group">
-          <label for="shortdesc">Short Description</label>
-          <input type="text" id="shortdesc" name="shortdesc" placeholder="Short Description" required>
-        </div>
-        <div class="pure-control-group">
-          <label for="desc">Description</label>
-          <textarea id="desc" name="desc" placeholder="Description" required></textarea>
-        </div>
-        <div class="pure-control-group">
-          <label for="vendor">Vendor</label>
-          <input type="text" id="vendor" name="vendor" placeholder="Vendor" value="Red Hat JBoss">
-        </div>
-      </div>
-      <div class="pure-u-1-4">
-        <div class="pure-control-group">
-          <label for="homepage">Homepage</label>
-          <input id="homepage" type="url" name="homepage" placeholder="Homepage" required>
-        </div>
-        <div class="pure-control-group">
-          <label for="license">License</label>
-          <select id="license" name="license" required><option value="LGPL">LGPL</option><option value="ASL">APL</option><option value="EPL">EPL</option><option value="AGPL">AGPL</option><option value="MIT">MIT</option><option value="BSD">BSD</option></select>
-        </div>
-        <div class="pure-control-group">
-          <label for="language">Language</label>
-          <input id="language" type="text" name="language" placeholder="Language">
-        </div>
-        <div class="pure-control-group">
-          <label for="category">Category</label>
-          <input id="category" type="text" name="category" placeholder="Category">
-        </div>
-      </div> 
-      <div class="pure-u-1-4">
-        <div class="pure-control-group">
-          <label for="repositoryType">Repository Type</label>
-          <select id="repositorytype" name="repositoryType" required><option value="">Select One</option><option value="CVSRepository">CVS</option><option value="SVNRepository">SVN</option><option value="ArchRepository">Arch</option><option value="BKRepository">BitKeeper</option><option value="GitRepository">Git</option><option value="BazaarBranch">Bazar</option><option value="HgRepository">Mercurial</option><option value="DarcsRepository">Darcs</option></select>
-        </div>
-        <div id="repoLocationGroup" class="pure-control-group repository">
-          <label for="repoLocation">Repo URL</label>
-          <input type="url" name="repoLocation" placeholder="Repository URL">
-        </div>
-        <div id="repoBrowseGroup" class="pure-control-group">
-          <label for="repoBrowse">Browse URL</label>
-          <input type="url" name="repoBrowse" placeholder="Browse URL">
-        </div>
-        <div id="repoModuleGroup" class="pure-control-group repository">
-          <label for="repoModule">Module</label>
-          <input type="text" name="repoModule" placeholder="Module">
-        </div>
-        <div id="repoAnonRoot" class="pure-control-group repository">
-          <label for="repoAnonRoot">Anon Root</label>
-          <input type="text" name="repoAnonRoot" placeholder="Anon-Root">
-        </div>
-      </div>
-      <div class="pure-u-1-4">
-        <div class="pure-control-group">
-          <label for="issueDB">Issue DB URL</label>
-          <input id="issueDB" type="url" name="issueDB" placeholder="Issue DB URL">
-        </div>
-        <div class="pure-control-group">
-          <label for="wiki">Wiki URL</label>
-          <input id="wiki" type="url" name="wiki" placeholder="Wiki URL">
-        </div>
-        <div class="pure-control-group">
-          <label for="mailingListURL">Mailing List URL</label>
-          <input id="mailingListURL" type="url" name="mailingListURL" placeholder="Mailing List URL">
-        </div>
-        <div class="pure-control-group">
-          <label for="logoURL">Logo URL</label>
-          <input id="logoURL" type="url" name="logoURL" placeholder="Logo URL" required>
-        </div>
-      </div>
-    </div>
-    <h2>People</h2>
-    <div class="pure-g">
-      <div class="pure-u-1-3">
-        <div class="pure-control-group">
-          <label for="first-name">First Name (required)</label>
-          <input id="first-name" name="first-name" placeholder="First Name">
-        </div>
-        <div class="pure-control-group">
-          <label for="last-name">Last Name (required)</label>
-          <input id="last-name" name="last-name" placeholder="Last Name">
-        </div>
-        <div class="pure-control-group">
-          <label for="community-account">Community Account</label>
-          <input id="community-account" name="community-account" placeholder="Community Account Username">
-        </div>
-        <!-- TODO: roles supported: tester, documentation, lead, developer, lead is also a maintainer-->
-        <div class="pure-control-group">
-          <label for="role">Role within the project (must have at least one Lead) (required)</label>
-          <select id="role" name="role">
-            <option value="">Select one</option>
-            <option value="lead">Lead</option>
-            <option value="documenter">Documenter</option>
-            <option value="tester">Tester</option>
-            <option value="developer">Developer</option>
-            <option value="helper">Helper</option>
-            <option value="translator">Translator</option>
-          </select>
-        </div>
-        <a id="addPerson" class="pure-button" href="#">Add Person</a>
-      </div>
-      <div class="pure-u-1-3">
-        <div class="pure-control-group">
-          <label for="people-container">People Added</label>
-          <select id="people-container" name="people-container" multiple></select>
-        </div>
-      </div>
-    </div>
-    <fieldset id="versions">
-      <legend>Versions</legend>
-      <a id="addVersion" class="pure-button" href="#">Add Version</a>
-      <div class="pure-g" id="insert-version-container"></div>
-    </fieldset>
-    <fieldset id="specs">
-      <legend>Specifications Implemented</legend>
-      <a id="addSpec" class="pure-button" href="#">Add Spec</a>
-      <div class="pure-g" id="insert-spec-container"></div>
-    </fieldset>
-    <fieldset id="accounts">
-      <legend>Online Account</legend>
-      <a id="addOnlineAccount" class="pure-button" herf="#">Add Online Account</a>
-      <div class="pure-g" id="insert-account-container"></div>
-    </fieldset>
-    <button type="submit" id="submit-button" class="pure-button pure-button-primary">Generate DOAP</button>
-    <a id="download-button" disabled class="pure-button pure-button-disabled">Download DOAP</a>
-  </form>
-    
-  <script type="text/xml" id="doap_template"><?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>DOAP generator form</title><link rel="stylesheet" href="styles/foundation.css"></head><body><form id="doap-form" data-abide="ajax"><div class="large-12 columns"><div class="row"><h1>DOAP Generator</h1><ul data-tab="" role="tablist" class="tabs"><li role="presentational" class="tab-title active"><a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">Project</a></li><li role="presentational" class="tab-title"><a href="#panel2-2" role="tab" tabindex="0" aria-selected="false" controls="panel2-2">People</a></li><li role="presentational" class="tab-title"><a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">Versions</a></li><li role="presentational" class="tab-title"><a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Specs</a></li><li role="presentational" class="tab-title"><a href="#panel2-5" role="tab" tabindex="0" aria-selected="false" controls="panel2-5">Social Media</a></li></ul><div class="tabs-content"><section id="panel2-1" role="tabpanel" aria-hidden="false" class="content active"><div class="small-3 columns"><label>Project Name <small>Required</small><input id="name" type="text" name="name" placeholder="Project Name" required=""></label><label>Short Description <small>Required</small><input id="shortdesc" type="text" name="shortdesc" placeholder="Short Description, one line" required=""></label><label>Vendor <input id="vendor" type="text" name="vendor" placeholder="Vendor" value="Red Hat JBoss"></label><label>Description <small>Required</small><textarea id="desc" name="desc" placeholder="Longer Description" required=""></textarea></label></div><div class="small-3 columns"><label>Homepage <small>Required</small><input id="homepage" type="url" name="homepage" placeholder="Homepage of the project" required=""></label><label>Project License <small>Required</small><select id="license" name="license" required=""><option value="LGPL">LGPL</option><option value="ASL">ASL</option><option value="EPL">EPL</option><option value="AGPL">AGPL</option><option value="MIT">MIT</option><option value="BSD">BSD</option></select></label><label>Programming Language <input id="language" type="text" name="language" placeholder="Java, C/C++, etc"></label><label>Category of Project <input id="category" type="text" name="category" placeholder="Server, library, etc"></label></div><div class="small-3 columns"><label>Repository Type <small>Required</small><select id="repositorytype" name="repositoryType" required=""><option value="">Select One</option><option value="CVSRepository">CVS</option><option value="SVNRepository">SVN</option><option value="ArchRepository">Arch</option><option value="BKRepository">BitKeeper</option><option value="GitRepository">Git</option><option value="BazaarBranch">Bazar</option><option value="HgRepository">Mercurial</option><option value="DarcsRepository">Darcs</option></select></label><div id="repoLocationGroup" class="hide repository"><label>Repo URL <input type="url" name="repoLocation" placeholder="Repository URL (.git, svn repo location)"></label></div><div id="repoBrowseGroup" class="hide repository"><label>Repo Homepage <input type="url" name="repoBrowse" placeholder="Github URL, Bitbucket URL"></label></div><div id="repoModuleGroup" class="hide repository"><label>Module <input type="text" name="repoModule" placeholder="Module"></label></div><div id="repoAnonRoot" class="hide repository"><label>Anon Root <input type="text" name="repoAnonRoot" placeholder="Anon-Root"></label></div></div><div class="small-3 columns"><label>Issue Tracker URL <input id="issueDB" type="url" name="issueDB" placeholder="Issue Tracker URL"></label><label>Wiki URL <input id="wiki" type="url" name="wiki" placeholder="Wiki URL"></label><label>Mailing List URL <input id="mailingListURL" type="url" name="mailingListURL" placeholder="Mailing List URL"></label><label>Logo URL <small>Required</small><input id="logoURL" type="url" name="logoURL" placeholder="Logo URL" required=""></label></div></section><section id="panel2-2" role="tabpanel" aria-hidden="true" class="content"><div class="small-6 columns"><label>First Name <small>Required</small><input id="first-name" type="text" name="first-name" placeholder="First Name"></label><label>Last Name <small>Required</small><input id="last-name" type="text" name="last-name" placeholder="Last Name"></label><label>JBoss Community Account <input id="community-account" type="text" name="community-account" placeholder="JBoss Community Account Username"></label><label>Role within the project (must have at least one Lead) <small>Required</small><select id="role" name="role"><option value="">Select one</option><option value="lead">Lead</option><option value="documenter">Documenter</option><option value="tester">Tester</option><option value="developer">Developer</option><option value="helper">Helper</option><option value="translator">Translator</option></select></label><a id="addPerson" href="#" class="button">Add Person</a></div><div class="small-6 columns"><label for="people-container">People Added </label><select id="people-container" name="people-container" multiple=""></select></div></section><section id="panel2-3" role="tabpanel" aria-hidden="true" class="content"><a id="addVersion" href="#" class="button">Add Version</a><div id="insert-version-container" class="container"></div></section><section id="panel2-4" role="tabpanel" aria-hidden="true" class="content"><a id="addSpec" href="#" class="button">Add Spec</a><div id="insert-spec-container" class="container"></div></section><section id="panel2-5" role="tabpanel" aria-hidden="true" class="content"><a id="addOnlineAccount" herf="#" class="button">Add Online Account</a><div id="insert-account-container" class="container"></div></section></div></div><div class="row"><button id="submit-button" type="submit" class="button">Generate DOAP</button></div></div></form><div id="doap-modal" data-reveal="" class="reveal-modal"><pre><code id="doap-code"></code></pre><a class="close-reveal-modal">&#215;</a></div><script id="rdf_template" type="text/html"><?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF xml:lang="en" xmlns="http://usefulinc.com/ns/doap#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
   <Project rdf:about="{{{homepage}}}">
     <name>{{{name}}}</name>
@@ -164,8 +16,8 @@
         {{#community}}
         <foaf:account>
           <foaf:OnlineAccount>
-            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
-            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount" />
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org" />
             <foaf:accountName>{{{community}}}</foaf:accountName>
           </foaf:OnlineAccount>
         </foaf:account>
@@ -182,8 +34,8 @@
         {{#community}}
         <foaf:account>
           <foaf:OnlineAccount>
-            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
-            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount" />
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org" />
             <foaf:accountName>{{{community}}}</foaf:accountName>
           </foaf:OnlineAccount>
         </foaf:account>
@@ -200,8 +52,8 @@
         {{#community}}
         <foaf:account>
           <foaf:OnlineAccount>
-            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
-            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount" />
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org" />
             <foaf:accountName>{{{community}}}</foaf:accountName>
           </foaf:OnlineAccount>
         </foaf:account>
@@ -218,8 +70,8 @@
         {{#community}}
         <foaf:account>
           <foaf:OnlineAccount>
-            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
-            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount" />
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org" />
             <foaf:accountName>{{{community}}}</foaf:accountName>
           </foaf:OnlineAccount>
         </foaf:account>
@@ -236,8 +88,8 @@
         {{#community}}
         <foaf:account>
           <foaf:OnlineAccount>
-            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
-            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount" />
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org" />
             <foaf:accountName>{{{community}}}</foaf:accountName>
           </foaf:OnlineAccount>
         </foaf:account>
@@ -254,8 +106,8 @@
         {{#community}}
         <foaf:account>
           <foaf:OnlineAccount>
-            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount">
-            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org">
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount" />
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org" />
             <foaf:accountName>{{{community}}}</foaf:accountName>
           </foaf:OnlineAccount>
         </foaf:account>
@@ -291,7 +143,7 @@
       <Specification>
         <name>{{{specName}}}</name>
         <description>{{{specDesc}}}</description>
-        <rdfs:seeAlso rdf:resource="{{{seeAlsoURL}}}"/>
+        <rdfs:seeAlso rdf:resource="{{{seeAlsoURL}}}" />
       </Specification>
       {{/specs}}
     </implements>
@@ -299,206 +151,59 @@
     {{#accounts}}
     <foaf:account>
       <foaf:OnlineAccount>
-        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/OnlineChatAccount"/>
-        <foaf:accountServiceHomepage rdf:resource="{{serviceHomepage}}"/>
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/OnlineChatAccount" />
+        <foaf:accountServiceHomepage rdf:resource="{{serviceHomepage}}" />
         <foaf:accountName>{{accountName}}</foaf:accountName>
       </foaf:OnlineAccount>
     </foaf:account>
     {{/accounts}}
   </Project>
-</rdf:RDF></script>
-  <script type="text/html" id="version_template"><div class="pure-u-1-3">
-      <div class="pure-control-group">
-        <label for="releaseName">Release Name</label>
-        <input type="text" name="releaseName" placeholder="Name"  required>
-      </div>
-      <div class="pure-control-group">
-        <label for="version">Revision</label>
-        <input type="text" name="revision" required>
-      </div>
-      <div class="pure-control-group">
-        <label for="created">Created Date</label>
-        <input type="date" name="created" required placeholder="YYYY-MM-DD">
-      </div>
-    </div></script>
-  <script type="text/html" id="spec_template"><div class="pure-u-1-3">
-      <div class="pure-control-group">
-        <label for="specName">Specification Name</label>
-        <input type="text" name="specName" placeholder="Spec Name" required>
-      </div>
-      <div class="pure-control-group">
-        <label for="specDesc">Specification Description</label>
-        <input type="text" name="specDecs" required>
-      </div>
-      <div class="pure-control-group">
-        <label for="seeAlsoURL">Specification URL</label>
-        <input type="url" name="seeAlsoURL">
-      </div>
-    </div></script>
-  <script type="text/html" id="account_template"><div class="pure-u-1-3">
-      <div class="pure-control-group">
-        <label for="serviceHomepage">Service Homepage</label>
-        <input type="url" name="serviceHomepage" placeholder="Service Homepage" required>
-      </div>
-      <div class="pure-control-group">
-        <label for="accountName">Account Name</label>
-        <input type="text" name="accountName" required>
-      </div>
-    </div></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-  <script type="text/javascript">
-    // Event listener to add a new version
-    $('#addVersion').on('click', function() {
-      $('#insert-version-container').append($('#version_template').text());
-    });
+</rdf:RDF>
 
-    // Event listener to add a new spec
-    $('#addSpec').on('click', function() {
-      $('#insert-spec-container').append($('#spec_template').text());
-    });
-
-    // Event listener to add a new spec
-    $('#addOnlineAccount').on('click', function() {
-      $('#insert-account-container').append($('#account_template').text());
-    });
-
-    $('#addPerson').on('click', function(event) {
-      var firstName = $('#first-name'),
-          lastName = $('#last-name'),
-          communityAccount = $('#community-account'),
-          role = $('#role');
-
-      event.preventDefault();
-
-      if (firstName.val().length !== 0 && lastName.val().length !== 0 && role.val().length !== 0) {
-        // Add to the selection
-        $('#people-container').append('<option data-first-name="' + firstName.val() + 
-            '" data-last-name="' + lastName.val() +'" data-role="' + role.val() + 
-            '" data-community="' + communityAccount.val() + '">' + firstName.val() + ' ' + lastName.val() + '</option>');
-
-        // Clear the values
-        firstName.val('');
-        lastName.val('');
-        communityAccount.val('');
-        role.val('');
-      }
-    });
-
-    // Event listener to the submit button to generate the DOAP content based 
-    // on the form.
-    $('#submit-button').on('click', function(event) {
-      if ($('#doap-form')[0].checkValidity()) {
-        event.preventDefault();
-      } else {
-        return true;
-      }
-      var o = {'releases':[{}], 'specs':[{}], 'accounts':[{}]},
-          release_names = ['releaseName', 'revision', 'created'],
-          spec_names = ['specName', 'specDecs', 'seeAlsoURL'],
-          account_names = ['accountName', 'serviceHomepage'],
-          people_names = ['first_name', 'last-name', 'community-account', 'role'],
-          a = $('#doap-form').serializeArray();
-      $.each(a, function() {
-        if (this.name) {
-          // check to see if it's a spec or version, then create an
-          // object for it and push the object to an array for
-          // use in the templates
-          if (release_names.indexOf(this.name) !== -1) {
-            var release = o.releases[o.releases.length - 1];
-            if (containsAll(release_names, Object.keys(release))) {
-              release = {};
-              o.releases.push(release);
-            }
-            release[this.name] = this.value || '';
-          } else if (spec_names.indexOf(this.name) !== -1) { 
-            var spec = o.specs[o.specs.length - 1];
-            if (containsAll(spec_names, Object.keys(spec))) {
-              spec = {};
-              o.specs.push(spec);
-            }
-            spec[this.name] = this.value || '';
-          } else if (account_names.indexOf(this.name) !== -1) {
-            var account = o.accounts[o.accounts.length - 1];
-            if (containsAll(account_names, Object.keys(account))) {
-              account = {};
-              o.accounts.push(account);
-            }
-            account[this.name] = this.value || '';
-          } else if (people_names.indexOf(this.name) !== -1) {
-            // people will be handled differently
-          } else {
-            o[this.name] = this.value || '';
-          }
-        } 
-      });
-
-      // Adding people
-      $("#people-container > option").each(function() {
-        var elm = $(this),
-            role = $(this).data("role");
-
-          if (typeof o[role] === "undefined") {
-            o[role] = [];
-          }
-          var person = { firstName : elm.data("first-name"), 
-                         lastName : elm.data("last-name"), 
-                         community : elm.data("community")
-          };
-          o[role].push(person);
-      });
-
-      if (o.releases.length === 1 && Object.keys(o.releases[0]).length === 0) {
-        o.releases = [];
-      }
-      if (o.specs.length === 1 && Object.keys(o.specs[0]).length === 0) {
-        o.specs = [];
-      }
-      if (o.accounts.length === 1 && Object.keys(o.accounts[0]).length === 0) {
-        o.accounts = [];
-      }
-      var downloadButton = $('#download-button');
-      downloadButton.attr('href', 'data:application/rdf+xml;charset=utf-8,' + encodeURIComponent(Mustache.render($('#doap_template').text(), o))); 
-      downloadButton.attr('download', 'doap.rdf');
-      downloadButton.attr('disabled', false);
-      downloadButton.removeClass('pure-button-disabled');
-      return false;
-    });
-
-    // Utility function to check the existance of all needles with the haystack
-    function containsAll(needles, haystack) {
-      for(var i = 0 , len = needles.length; i < len; i++){
-        if($.inArray(needles[i], haystack) === -1) return false;
-      }
-      return true;
-    }
-
-    $('#repositorytype').on('change', function(event) {
-      // Hide everything so we don't get the wrong items if they change
-      // the type
-        $('.repository').each(function() { 
-          $(this).hide(); 
-          $('input', this).each(function() { 
-            $(this).attr('required', false); 
-          });
-        });
-      var selectedValue = $('option:selected', this).val();
-      if (selectedValue === 'CVSRepository' || selectedValue === 'BKRepository' || selectedValue === 'ArchRepository') {
-        var moduleGroup = $('#repoModuleGroup');
-        moduleGroup.toggle();
-        $('input', moduleGroup).attr('required', true);
-        if (selectedValue === 'CVSRepository') {
-          var anonRoot = $('#repoAnonRoot');
-          anonRoot.toggle();
-          $('input', anonRoot).attr('required', true); 
-        }
-      } else {
-        var locationGroup = $('#repoLocationGroup');
-        locationGroup.toggle();
-        $('input', locationGroup).attr('required', true);
-      } 
-    });
-  </script>
-</body>
-</html>
-
+</script><script id="version_template" type="text/html"><div class="small-3 columns">
+  <fieldset>
+    <legend>Version</legend>
+    <label>Release Name
+      <small>Required</small>
+      <input type="text" name="releaseName" placeholder="Name" required>
+    </label>
+    <label for="version">Revision Number
+      <small>Required</small>
+      <input type="text" name="revision" required>
+    </label>
+    <label for="created">Created Date
+      <small>Required</small>
+      <input type="date" name="created" required placeholder="YYYY-MM-DD">
+    </label>
+  </fieldset>
+</div>
+</script><script id="spec_template" type="text/html"><div class="small-3 columns">
+  <fieldset>
+    <legend>Specification</legend>
+    <label for="specName">Name
+      <small>Required</small>
+      <input type="text" name="specName" placeholder="Spec Name" required>
+    </label>
+    <label for="specDesc">Description
+      <small>Required</small>
+      <input type="text" name="specDecs" required>
+    </label>
+    <label for="seeAlsoURL">URL
+      <input type="url" name="seeAlsoURL">
+    </label>
+  </fieldset>
+</div>
+</script><script id="account_template" type="text/html"><div class="small-3 columns">
+  <fieldset>
+    <legend>Account</legend>
+    <label for="serviceHomepage">Service URL
+      <small>Required</small>
+      <input type="url" name="serviceHomepage" placeholder="http://twitter.com" required>
+    </label>
+    <label for="accountName">Account Name
+      <small>Required</small>
+      <input type="text" name="accountName" required>
+    </label>
+  </fieldset>
+</div>
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script><script src="scripts/foundation.js"></script><script src="scripts/doap-form.js"></script><script>$(document).foundation();</script></body></html>
