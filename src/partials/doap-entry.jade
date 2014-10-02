@@ -26,7 +26,12 @@ form#doap-form(data-abide="ajax")
                 input#shortdesc(type="text", name="shortdesc", placeholder="Short Description, one line", required="")
             .input-container
               label Vendor 
-                input#vendor(type="text", name="vendor", placeholder="Vendor", value="Red Hat JBoss")
+                small Required
+                select#vendor(name="vendor", required="")
+                  option(value="") Select One
+                  option(value="Red Hat") Red Hat
+                  option(value="Apache") Apache
+                  option(value="Eclipse") Eclipse
             .input-container
               label Description 
                 small Required
