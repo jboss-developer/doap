@@ -16,89 +16,106 @@ form#doap-form(data-abide="ajax")
       .tabs-content
         section#panel2-1.content.active(role="tabpanel", aria-hidden="false")
           .small-3.columns
-            label Project Name 
-              small Required
-              input#name(type="text", name="name", placeholder="Project Name", required="")
-            label Short Description 
-              small Required
-              input#shortdesc(type="text", name="shortdesc", placeholder="Short Description, one line", required="")
-            label Vendor 
-              input#vendor(type="text", name="vendor", placeholder="Vendor", value="Red Hat JBoss")
-            label Description 
-              small Required
-              textarea#desc(name="desc", placeholder="Longer Description", required="")
+            .input-container
+              label Project Name 
+                small Required
+                input#name(type="text", name="name", placeholder="Project Name", required="")
+            .input-container
+              label Short Description 
+                small Required
+                input#shortdesc(type="text", name="shortdesc", placeholder="Short Description, one line", required="")
+            .input-container
+              label Vendor 
+                input#vendor(type="text", name="vendor", placeholder="Vendor", value="Red Hat JBoss")
+            .input-container
+              label Description 
+                small Required
+                textarea#desc(name="desc", placeholder="Longer Description", required="")
           .small-3.columns
-            label Homepage 
-              small Required
-              input#homepage(type="url", name="homepage", placeholder="Homepage of the project", required="")
-            label Project License 
-              small Required
-              select#license(name="license", required="")
-                option(value="LGPL") LGPL
-                option(value="ASL") ASL
-                option(value="EPL") EPL
-                option(value="AGPL") AGPL
-                option(value="MIT") MIT
-                option(value="BSD") BSD
-            label Programming Language 
-              input#language(type="text", name="language", placeholder="Java, C/C++, etc")
-            label Category of Project 
-              input#category(type="text", name="category", placeholder="Server, library, etc")
+            .input-container
+              label Homepage 
+                small Required
+                input#homepage(type="url", name="homepage", placeholder="Homepage of the project", required="")
+            .input-container
+              label Project License 
+                small Required
+                select#license(name="license", required="")
+                  option(value="LGPL") LGPL
+                  option(value="ASL") ASL
+                  option(value="EPL") EPL
+                  option(value="AGPL") AGPL
+                  option(value="MIT") MIT
+                  option(value="BSD") BSD
+            .input-container
+              label Programming Language 
+                input#language(type="text", name="language", placeholder="Java, C/C++, etc")
+            .input-container
+              label Category of Project 
+                input#category(type="text", name="category", placeholder="Server, library, etc")
           .small-3.columns
-            label Repository Type 
-              small Required
-              select#repositorytype(name="repositoryType", required="")
-                option(value="") Select One
-                option(value="CVSRepository") CVS
-                option(value="SVNRepository") SVN
-                option(value="ArchRepository") Arch
-                option(value="BKRepository") BitKeeper
-                option(value="GitRepository") Git
-                option(value="BazaarBranch") Bazar
-                option(value="HgRepository") Mercurial
-                option(value="DarcsRepository") Darcs
-            #repoLocationGroup.hide.repository
+            .input-container
+              label Repository Type 
+                small Required
+                select#repositorytype(name="repositoryType", required="")
+                  option(value="") Select One
+                  option(value="CVSRepository") CVS
+                  option(value="SVNRepository") SVN
+                  option(value="ArchRepository") Arch
+                  option(value="BKRepository") BitKeeper
+                  option(value="GitRepository") Git
+                  option(value="BazaarBranch") Bazar
+                  option(value="HgRepository") Mercurial
+                  option(value="DarcsRepository") Darcs
+            #repoLocationGroup.hide.repository.input-container
               label Repo URL 
                 input(type="url", name="repoLocation", placeholder="Repository URL (.git, svn repo location)")
-            #repoBrowseGroup.hide.repository
+            #repoBrowseGroup.hide.repository.input-container
               label Repo Homepage 
                 input(type="url", name="repoBrowse", placeholder="Github URL, Bitbucket URL")
             #repoModuleGroup.hide.repository
               label Module 
                 input(type="text", name="repoModule", placeholder="Module")
-            #repoAnonRoot.hide.repository
+            #repoAnonRoot.hide.repository.input-container
               label Anon Root 
                 input(type="text", name="repoAnonRoot", placeholder="Anon-Root")
           .small-3.columns
-            label Issue Tracker URL 
-              input#issueDB(type="url", name="issueDB", placeholder="Issue Tracker URL")
-            label Wiki URL 
-              input#wiki(type="url", name="wiki", placeholder="Wiki URL")
-            label Mailing List URL 
-              input#mailingListURL(type="url", name="mailingListURL", placeholder="Mailing List URL")
-            label Logo URL 
-              small Required
-              input#logoURL(type="url", name="logoURL", placeholder="Logo URL", required="")
+            .input-container
+              label Issue Tracker URL 
+                input#issueDB(type="url", name="issueDB", placeholder="Issue Tracker URL")
+            .input-container
+              label Wiki URL 
+                input#wiki(type="url", name="wiki", placeholder="Wiki URL")
+            .input-container
+              label Mailing List URL 
+                input#mailingListURL(type="url", name="mailingListURL", placeholder="Mailing List URL")
+            .input-container
+              label Logo URL 
+                small Required
+                input#logoURL(type="url", name="logoURL", placeholder="Logo URL", required="")
         section#panel2-2.content(role="tabpanel", aria-hidden="true")
           .small-6.columns
-            label First Name 
-              small Required
-              input#first-name(type="text", name="first-name", placeholder="First Name")
-            label Last Name 
-              small Required
-              input#last-name(type="text", name="last-name", placeholder="Last Name")
-            label JBoss Community Account 
-              input#community-account(type="text", name="community-account", placeholder="JBoss Community Account Username")
-            label Role within the project (must have at least one Lead) 
-              small Required
-              select#role(name="role")
-                option(value="") Select one
-                option(value="lead") Lead
-                option(value="documenter") Documenter
-                option(value="tester") Tester
-                option(value="developer") Developer
-                option(value="helper") Helper
-                option(value="translator") Translator
+            .input-container
+              label First Name 
+                small Required
+                input#first-name(type="text", name="first-name", placeholder="First Name")
+            .input-container
+              label Last Name 
+                small Required
+                input#last-name(type="text", name="last-name", placeholder="Last Name")
+            .input-container
+              label JBoss Community Account 
+                input#community-account(type="text", name="community-account", placeholder="JBoss Community Account Username")
+            .input-container
+              label Role within the project (must have at least one Lead) 
+                small Required
+                select#role(name="role")
+                  option(value="") Select one
+                  option(value="lead") Lead
+                  option(value="documenter") Documenter
+                  option(value="tester") Tester
+                  option(value="developer") Developer
+                  option(value="helper") Helper
+                  option(value="translator") Translator
             a#addPerson.button(href="#") Add Person
           .small-6.columns
             label(for="people-container") People Added 
@@ -115,6 +132,7 @@ form#doap-form(data-abide="ajax")
     .row
       button#submit-button.button(type="submit") Generate DOAP
 #doap-modal.reveal-modal(data-reveal="")
+  a#download-button.button(href="#") Download
   pre
     code#doap-code
   a.close-reveal-modal &#215;
