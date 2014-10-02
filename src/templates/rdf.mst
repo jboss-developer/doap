@@ -152,7 +152,7 @@
     <foaf:account>
       <foaf:OnlineAccount>
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/OnlineChatAccount" />
-        <foaf:accountServiceHomepage rdf:resource="{{serviceHomepage}}" />
+        <foaf:accountServiceHomepage rdf:resource="{{{serviceHomepage}}}" />
         <foaf:accountName>{{accountName}}</foaf:accountName>
       </foaf:OnlineAccount>
     </foaf:account>
