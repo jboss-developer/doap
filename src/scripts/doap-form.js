@@ -65,7 +65,11 @@ var build_doap = function(event) {
       spec_names = ['specName', 'specDecs', 'seeAlsoURL'],
       account_names = ['accountName', 'serviceHomepage'],
       people_names = ['first_name', 'last-name', 'community-account', 'role'],
+      form = $('#doap-form'),
       a = $('#doap-form').serializeArray();
+
+  if (form.find('.error').length) return; // No need to continue if we have errors
+
   $.each(a, function() {
     if (this.name) {
       // check to see if it's a spec or version, then create an
@@ -136,7 +140,7 @@ var build_doap = function(event) {
   return false;
 };
 
-$('#doap-form').on('valid submit valid.fndtn.abide', build_doap);
+$('#doap-form').on('valid valid.fndtn.abide', build_doap);
 
 // Utility function to check the existance of all needles with the haystack
 function containsAll(needles, haystack) {
