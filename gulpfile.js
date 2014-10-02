@@ -2,15 +2,17 @@
 
 // gulp plugins
 var gulp           = require('gulp'),
-    gutil          = require('gulp-util'),
     webserver      = require('gulp-webserver'),
     del            = require('del'),
     deploy         = require('gulp-gh-pages'),
     uglify         = require('gulp-uglify'),
     sourcemaps     = require('gulp-sourcemaps'),
-    //jshint         = require('gulp-jshint'),
+    jshint         = require('gulp-jshint'),
+    sass           = require('gulp-sass'),
+    concat         = require('gulp-concat'),
     //googlecdn = require('gulp-google-cdn'),
     //karma          = require('gulp-karma'),
+    //gutil          = require('gulp-util'),
     mainBowerFiles = require('main-bower-files'),
     jade           = require('gulp-jade');
 
@@ -25,14 +27,25 @@ gulp.task('compile-jade', function() {
 });
 
 gulp.task('compile-scripts', function() {
-  gulp.src('./src/scripts/*')
-    .pipe(gulp.dest('./dist/scripts/'));
-  gulp.src(mainBowerFiles({filter: /\.js$/i}))
+  var files = mainBowerFiles({filter: /\.js$/i});
+  files.push('./src/scripts/**/*');
+
+  gulp.src(files)
+    .pipe(jshint())
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(concat('all.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest('./dist/scripts/'));
 });
 
 gulp.task('compile-css', function() {
-  gulp.src(mainBowerFiles({filter: /\.css$/i}))
+  var files = mainBowerFiles({filter: /\.css$/i});
+  files.push('./src/styles/**/*.scss');
+
+  gulp.src(files)
+    .pipe(sourcemaps.init())
+    .pipe(sass())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/styles'));
 });
