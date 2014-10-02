@@ -136,7 +136,9 @@
     </repository>
     {{#issueDB}}<bug-database rdf:resource="{{{issueDB}}}" />{{/issueDB}}
     {{#wiki}}<wiki rdf:resource="{{{wiki}}}" />{{/wiki}}{{^wiki}}{{/wiki}}
-    {{#language}}<programming-language>{{language}}</programming-language>{{/language}}
+    {{#language}}
+    <programming-language>{{{.}}}</programming-language>
+    {{/language}}
     <vendor>{{{vendor}}}</vendor>
     <implements>
       {{#specs}}

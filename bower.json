@@ -14,6 +14,7 @@
     "spec"
   ],
   "dependencies": {
-    "foundation": "~5.4.5"
+    "foundation": "~5.4.5",
+    "foundation-multiselect": "*"
   }
 }

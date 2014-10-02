@@ -68,7 +68,8 @@ var build_doap = function(event) {
       form = $('#doap-form'),
       a = $('#doap-form').serializeArray();
 
-  if (form.find('.error').length) return; // No need to continue if we have errors
+  event.preventDefault();
+  event.stopImmediatePropagation();
 
   $.each(a, function() {
     if (this.name) {
@@ -98,6 +99,8 @@ var build_doap = function(event) {
         account[this.name] = this.value || '';
       } else if (people_names.indexOf(this.name) !== -1) {
         // people will be handled differently
+      } else if ("language".indexOf(this.name)) {
+        o['language'] = $('#language').zmultiselect('getValue');
       } else {
         o[this.name] = this.value || '';
       }
@@ -140,7 +143,7 @@ var build_doap = function(event) {
   return false;
 };
 
-$('#doap-form').on('valid valid.fndtn.abide', build_doap);
+$('#doap-form').on('submit valid valid.fndtn.abide', build_doap);
 
 // Utility function to check the existance of all needles with the haystack
 function containsAll(needles, haystack) {

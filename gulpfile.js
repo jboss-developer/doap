@@ -40,13 +40,12 @@ gulp.task('compile-scripts', function() {
 });
 
 gulp.task('compile-css', function() {
-  //var files = mainBowerFiles({filter: /\.css$/i});
-  //files.push('./src/styles/**/*.scss');
-  var files = ['./src/styles/**/*.scss'];
+  var files = ['./src/styles/**/*.scss', 'bower_components/foundation-multiselect/zmultiselect/zurb5-multiselect.css'];
 
   gulp.src(files)
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'}))
+    .pipe(concat('app.css'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/styles'));
 });
@@ -68,6 +67,7 @@ gulp.task('server', function(next) {
 gulp.task('watch', function() {
   gulp.watch(['src/*.jade','src/**/*.jade','src/**/*.mst'], ['compile-jade']);
   gulp.watch('src/**/*.js', ['compile-scripts']);
+  gulp.watch('src/**/*.scss', ['compile-css']);
 });
 
 gulp.task('default', ['server','watch','compile'], function () {});

@@ -53,7 +53,18 @@ form#doap-form(data-abide="ajax")
                   option(value="BSD") BSD
             .input-container
               label Programming Language 
-                input#language(type="text", name="language", placeholder="Java, C/C++, etc")
+                select#language(name="language")
+                  option(value="Java") Java
+                  option(value="C/C++") C/C++
+                  option(value="Swift") Swift
+                  option(value="Objective-C") Objective-C
+                  option(value="HTML5") HTML5
+                  option(value="JavaScript") JavaScript
+                  option(value="Groovy") Groovy
+                  option(value="Ruby") Ruby
+                  option(value="Scala") Scala
+                  option(value="Clojure") Clojure
+                  option(value="Perl") Perl
             .input-container
               label Category of Project 
                 input#category(type="text", name="category", placeholder="Server, library, etc")
