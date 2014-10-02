@@ -40,12 +40,13 @@ gulp.task('compile-scripts', function() {
 });
 
 gulp.task('compile-css', function() {
-  var files = mainBowerFiles({filter: /\.css$/i});
-  files.push('./src/styles/**/*.scss');
+  //var files = mainBowerFiles({filter: /\.css$/i});
+  //files.push('./src/styles/**/*.scss');
+  var files = ['./src/styles/**/*.scss'];
 
   gulp.src(files)
     .pipe(sourcemaps.init())
-    .pipe(sass())
+    .pipe(sass({outputStyle: 'compressed'}))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/styles'));
 });
