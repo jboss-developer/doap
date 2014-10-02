@@ -36,11 +36,14 @@ form#doap-form(data-abide="ajax")
               label Description 
                 small Required
                 textarea#desc(name="desc", placeholder="Longer Description", required="")
-          .small-3.columns
             .input-container
               label Homepage 
                 small Required
                 input#homepage(type="url", name="homepage", placeholder="Homepage of the project", required="")
+            .input-container
+              label Logo URL 
+                small Required
+                input#logoURL(type="url", name="logoURL", placeholder="Logo URL", required="")
             .input-container
               label Project License 
                 small Required
@@ -51,6 +54,34 @@ form#doap-form(data-abide="ajax")
                   option(value="AGPL") AGPL
                   option(value="MIT") MIT
                   option(value="BSD") BSD
+            .input-container
+              label Repository Type 
+                small Required
+                select#repositorytype(name="repositoryType", required="")
+                  option(value="") Select One
+                  option(value="CVSRepository") CVS
+                  option(value="SVNRepository") SVN
+                  option(value="ArchRepository") Arch
+                  option(value="BKRepository") BitKeeper
+                  option(value="GitRepository") Git
+                  option(value="BazaarBranch") Bazar
+                  option(value="HgRepository") Mercurial
+                  option(value="DarcsRepository") Darcs
+            #repoLocationGroup.hide.repository.input-container
+              label Repo URL 
+                small Required
+                input(type="url", name="repoLocation", placeholder="Repository URL (.git, svn repo location)")
+            #repoModuleGroup.hide.repository
+              label Module 
+                small Required
+                input(type="text", name="repoModule", placeholder="Module")
+            #repoAnonRoot.hide.repository.input-container
+              label Anon Root 
+                small Required
+                input(type="text", name="repoAnonRoot", placeholder="Anon-Root")
+            #repoBrowseGroup.hide.repository.input-container
+              label Repo Homepage 
+                input(type="url", name="repoBrowse", placeholder="Github URL, Bitbucket URL")
             .input-container
               label Programming Language 
                 select#language(name="language")
@@ -69,33 +100,6 @@ form#doap-form(data-abide="ajax")
               .input-container
                 label Category of Project 
                   input#category(type="text", name="category", placeholder="Server, library, etc")
-          .small-3.columns
-            .input-container
-              label Repository Type 
-                small Required
-                select#repositorytype(name="repositoryType", required="")
-                  option(value="") Select One
-                  option(value="CVSRepository") CVS
-                  option(value="SVNRepository") SVN
-                  option(value="ArchRepository") Arch
-                  option(value="BKRepository") BitKeeper
-                  option(value="GitRepository") Git
-                  option(value="BazaarBranch") Bazar
-                  option(value="HgRepository") Mercurial
-                  option(value="DarcsRepository") Darcs
-            #repoLocationGroup.hide.repository.input-container
-              label Repo URL 
-                input(type="url", name="repoLocation", placeholder="Repository URL (.git, svn repo location)")
-            #repoBrowseGroup.hide.repository.input-container
-              label Repo Homepage 
-                input(type="url", name="repoBrowse", placeholder="Github URL, Bitbucket URL")
-            #repoModuleGroup.hide.repository
-              label Module 
-                input(type="text", name="repoModule", placeholder="Module")
-            #repoAnonRoot.hide.repository.input-container
-              label Anon Root 
-                input(type="text", name="repoAnonRoot", placeholder="Anon-Root")
-          .small-3.columns
             .input-container
               label Issue Tracker URL 
                 input#issueDB(type="url", name="issueDB", placeholder="Issue Tracker URL")
@@ -105,10 +109,6 @@ form#doap-form(data-abide="ajax")
             .input-container
               label Mailing List URL 
                 input#mailingListURL(type="url", name="mailingListURL", placeholder="Mailing List URL")
-            .input-container
-              label Logo URL 
-                small Required
-                input#logoURL(type="url", name="logoURL", placeholder="Logo URL", required="")
         section#panel2-2.content(role="tabpanel", aria-hidden="true")
           .small-6.columns
             .input-container

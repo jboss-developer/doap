@@ -100,7 +100,7 @@ var build_doap = function(event) {
       } else if (people_names.indexOf(this.name) !== -1) {
         // people will be handled differently
       } else if ("language".indexOf(this.name)) {
-        o['language'] = $('#language').zmultiselect('getValue');
+        o['language'] = $('#language').zmultiselect('getValue').split(",");
       } else {
         o[this.name] = this.value || '';
       }
@@ -168,6 +168,7 @@ $('#repositorytype').on('change', function(event) {
   if (selectedValue === 'CVSRepository' || selectedValue === 'BKRepository' || selectedValue === 'ArchRepository') {
     var moduleGroup = $('#repoModuleGroup');
     moduleGroup.show();
+    moduleGroup.attr('required', 'true');
     $('input', moduleGroup).attr('required', true);
     if (selectedValue === 'CVSRepository') {
       var anonRoot = $('#repoAnonRoot');
