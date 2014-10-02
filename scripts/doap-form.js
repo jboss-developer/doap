@@ -124,17 +124,15 @@ var build_doap = function(event) {
   if (o.accounts.length === 1 && Object.keys(o.accounts[0]).length === 0) {
     o.accounts = [];
   }
-  var //downloadButton = $('#download-button'),
+  var downloadButton = $('#download-button'),
       template = $('#rdf_template').text(),
       doapModal = $('#doap-modal'),
       doapCode = $('#doap-code'),
       rdf = Mustache.render(template, o);
   doapCode.text(rdf);
   doapModal.foundation('reveal', 'open')
-  //downloadButton.attr('href', 'data:application/rdf+xml;charset=utf-8,' + encodeURIComponent(rdf)); 
-  //downloadButton.attr('download', 'doap.rdf');
-  //downloadButton.attr('disabled', false);
-  //downloadButton.removeClass('pure-button-disabled');
+  downloadButton.attr('href', 'data:application/rdf+xml;charset=utf-8,' + encodeURIComponent(rdf)); 
+  downloadButton.attr('download', 'doap.rdf');
   return false;
 };
 
