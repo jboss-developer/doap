@@ -7,3 +7,8 @@ $("#language").zmultiselect({
 });
 $("#language").zmultiselect("uncheckall");
 
+// Give them one to fill in
+$('#addVersion').trigger('click');
+$('#addSpec').trigger('click');
+$('#addOnlineAccount').trigger('click');
+

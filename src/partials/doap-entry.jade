@@ -15,7 +15,7 @@ form#doap-form(data-abide="ajax")
           a(href="#panel2-5", role="tab", tabindex="0", aria-selected="false", controls="panel2-5") Social Media
       .tabs-content
         section#panel2-1.content.active(role="tabpanel", aria-hidden="false")
-          .small-3.columns
+          .small-12.columns
             .input-container
               label Project Name 
                 small Required
@@ -35,7 +35,7 @@ form#doap-form(data-abide="ajax")
             .input-container
               label Description 
                 small Required
-                textarea#desc(name="desc", placeholder="Longer Description", required="")
+                textarea#desc(name="desc", placeholder="Longer Description", required="" cols="120" rows="10")
             .input-container
               label Homepage 
                 small Required
