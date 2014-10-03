@@ -16,6 +16,11 @@ var gulp           = require('gulp'),
     mainBowerFiles = require('main-bower-files'),
     jade           = require('gulp-jade');
 
+function errorLog(error) {
+  console.error.bind(error);
+  this.emit('end');
+}
+
 gulp.task('clean', function (cb) {
   del(['dist/**'], cb);
 });
@@ -23,6 +28,7 @@ gulp.task('clean', function (cb) {
 gulp.task('compile-jade', function() {
   gulp.src('src/*.jade')
     .pipe(jade({}))
+    .on('error', errorLog)
     .pipe(gulp.dest('dist'));
 });
 
@@ -32,9 +38,11 @@ gulp.task('compile-scripts', function() {
 
   gulp.src(files)
     .pipe(jshint())
+    .on('error', errorLog)
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(concat('all.js'))
     .pipe(uglify())
+    .on('error', errorLog)
     .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest('./dist/scripts/'));
 });
@@ -45,6 +53,7 @@ gulp.task('compile-css', function() {
   gulp.src(files)
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'}))
+    .on('error', errorLog)
     .pipe(concat('app.css'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/styles'));
