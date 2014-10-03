@@ -2,8 +2,7 @@
   <fieldset>
     <legend>Version</legend>
     <label>Release Name
-      <small>Required</small>
-      <input type="text" name="releaseName" placeholder="Name" required>
+      <input type="text" name="releaseName" placeholder="Name">
     </label>
     <label for="version">Revision Number
       <small>Required</small>
