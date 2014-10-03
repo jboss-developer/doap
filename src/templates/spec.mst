@@ -6,8 +6,7 @@
       <input type="text" name="specName" placeholder="Spec Name" required>
     </label>
     <label for="specDesc">Description
-      <small>Required</small>
-      <input type="text" name="specDecs" required>
+      <textarea name="specDecs"></textarea>
     </label>
     <label for="seeAlsoURL">URL
       <input type="url" name="seeAlsoURL">
