@@ -45,4 +45,17 @@
   //@import "foundation/components/offcanvas";
   @import "../../bower_components/foundation/scss/foundation/components/visibility";
 
+.tabs {
+  border: 1px solid;
+  border-bottom: none;
+  border-top-right-radius: 1.5em;
+  background: #EFEFEF;
+}
+.tabs-content {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-bottom-right-radius: 1.5em;
+  border-bottom-left-radius: 1.5em;
+}
 
