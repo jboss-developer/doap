@@ -138,14 +138,17 @@ form#doap-form(data-abide="ajax")
             label(for="people-container") People Added 
             select#people-container(name="people-container", multiple="")
         section#panel2-3.content(role="tabpanel", aria-hidden="true")
-          a#addVersion.button(href="#") Add Version
-          #insert-version-container.container
+          .small-12.columns
+            a#addVersion.button(href="#") Add Version
+            #insert-version-container.container
         section#panel2-4.content(role="tabpanel", aria-hidden="true")
-          a#addSpec.button(href="#") Add Spec
-          #insert-spec-container.container
+          .small-12.columns
+            a#addSpec.button(href="#") Add Spec
+            #insert-spec-container.container
         section#panel2-5.content(role="tabpanel", aria-hidden="true")
-          a#addOnlineAccount.button(herf="#") Add Online Account
-          #insert-account-container.container
+          .small-12.columns
+            a#addOnlineAccount.button(herf="#") Add Online Account
+            #insert-account-container.container
     .row
       button#submit-button.button(type="submit") Generate DOAP
 #doap-modal.reveal-modal(data-reveal="")
