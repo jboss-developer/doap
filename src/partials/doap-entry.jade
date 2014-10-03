@@ -136,7 +136,8 @@ form#doap-form(data-abide="ajax")
             a#addPerson.button(href="#") Add Person
           .small-6.columns
             label(for="people-container") People Added 
-            select#people-container(name="people-container", multiple="")
+            select.people-container#people-container(name="people-container", multiple="")
+            button#removePerson.button(type="button") Remove
         section#panel2-3.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
             a#addVersion.button(href="#") Add Version

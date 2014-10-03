@@ -32,29 +32,34 @@ $('#addPerson').on('click', function(event) {
 
     // Clear the values
     $.each([firstName, lastName, communityAccount, role], function(entry) {
-      entry.val('');
-      entry.removeAttr('data-invalid');
-      entry.removeAttr('aria-invalid');
-      entry.removeClass('error');
-      entry.parent().removeClass('error');
+      this.val('');
+      this.removeAttr('data-invalid');
+      this.removeAttr('aria-invalid');
+      this.removeClass('error');
+      this.parent().removeClass('error');
     });
   } else {
     if (firstName.val().length === 0) {
       firstName.attr('data-invalid', '');
       firstName.attr('aria-invalid', true);
-      firstName.parent().addClass("error")
+      firstName.parent().addClass("error");
     } 
     if (lastName.val().length === 0) {
       lastName.attr('data-invalid', '');
       lastName.attr('aria-invalid', true);
-      lastName.parent().addClass("error")
+      lastName.parent().addClass("error");
     } 
     if (role.val().length === 0) {
       role.attr('data-invalid', '');
       role.attr('aria-invalid', true);
-      role.parent().addClass("error")
+      role.parent().addClass("error");
     }
   }
+});
+
+$('#removePerson').on('click', function(event) {
+  event.preventDefault();
+  $('#people-container :selected').each(function() {this.remove()});
 });
 
 // Event listener to the submit button to generate the DOAP content based 
