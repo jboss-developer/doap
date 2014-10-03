@@ -59,3 +59,9 @@
   border-bottom-left-radius: 1.5em;
 }
 
+button[type="submit"] {
+  background-color: #43ac6a;
+  &:hover {
+    background-color: darken(#43ac6a, 10%);
+  }
+}
