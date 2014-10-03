@@ -140,16 +140,19 @@ form#doap-form(data-abide="ajax")
             button#removePerson.button(type="button") Remove
         section#panel2-3.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
-            a#addVersion.button(href="#") Add Version
             #insert-version-container.container
+            .row
+              a#addVersion.button(href="#") Add Version
         section#panel2-4.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
-            a#addSpec.button(href="#") Add Spec
             #insert-spec-container.container
+            .row
+              a#addSpec.button(href="#") Add Spec
         section#panel2-5.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
-            a#addOnlineAccount.button(herf="#") Add Online Account
             #insert-account-container.container
+            .row
+              a#addOnlineAccount.button(herf="#") Add Online Account
     .row
       button#submit-button.button(type="submit") Generate DOAP
 #doap-modal.reveal-modal(data-reveal="")

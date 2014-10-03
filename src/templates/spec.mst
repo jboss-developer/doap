@@ -1,4 +1,4 @@
-<div class="small-3 columns">
+<div class="row">
   <fieldset>
     <legend>Specification</legend>
     <label for="specName">Name
