@@ -2,19 +2,22 @@
 $('#addVersion').on('click', function(event) {
   event.preventDefault();
   $('#insert-version-container').append($('#version_template').text());
+  bindEventForRemoveButtons();
 });
 
 // Event listener to add a new spec
 $('#addSpec').on('click', function(event) {
   event.preventDefault();
   $('#insert-spec-container').append($('#spec_template').text());
+  bindEventForRemoveButtons();
 });
 
 // Event listener to add a new spec
 $('#addOnlineAccount').on('click', function(event) {
   event.preventDefault();
   $('#insert-account-container').append($('#account_template').text());
-});
+  bindEventForRemoveButtons();
+}); 
 
 $('#addPerson').on('click', function(event) {
   var firstName = $('#first-name'),
@@ -159,7 +162,7 @@ var build_doap = function(event) {
   downloadButton.attr('href', 'data:application/rdf+xml;charset=utf-8,' + encodeURIComponent(rdf)); 
   downloadButton.attr('download', 'doap.rdf');
   return false;
-};
+}; 
 
 $('#doap-form').on('submit valid valid.fndtn.abide', build_doap);
 
@@ -202,4 +205,10 @@ $('#repositorytype').on('change', function(event) {
     $('input', locationGroup).attr('required', true);
   } 
 });
+
+function bindEventForRemoveButtons() {
+  $('.remove-item').on('click', function(event) {
+    $(event.target).parent().remove();
+  });
+}
 

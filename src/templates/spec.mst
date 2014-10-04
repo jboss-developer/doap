@@ -11,5 +11,6 @@
     <label for="seeAlsoURL">URL
       <input type="url" name="seeAlsoURL">
     </label>
+    <a class="button remove-item right" href="#">Remove</a>
   </fieldset>
 </div>

@@ -12,5 +12,6 @@
       <small>Required</small>
       <input type="date" name="created" required placeholder="YYYY-MM-DD">
     </label>
+    <a class="button remove-item right" href="#">Remove</a>
   </fieldset>
 </div>

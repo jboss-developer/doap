@@ -9,5 +9,6 @@
       <small>Required</small>
       <input type="text" name="accountName" required>
     </label>
+    <a class="button remove-item right" href="#">Remove</a>
   </fieldset>
 </div>
