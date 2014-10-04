@@ -59,7 +59,7 @@ $('#addPerson').on('click', function(event) {
 
 $('#removePerson').on('click', function(event) {
   event.preventDefault();
-  $('#people-container :selected').each(function() {this.remove()});
+  $('#people-container :selected').each(function() {this.remove();});
 });
 
 // Event listener to the submit button to generate the DOAP content based 
@@ -155,7 +155,7 @@ var build_doap = function(event) {
       doapCode = $('#doap-code'),
       rdf = Mustache.render(template, o);
   doapCode.text(rdf);
-  doapModal.foundation('reveal', 'open')
+  doapModal.foundation('reveal', 'open');
   downloadButton.attr('href', 'data:application/rdf+xml;charset=utf-8,' + encodeURIComponent(rdf)); 
   downloadButton.attr('download', 'doap.rdf');
   return false;
@@ -181,10 +181,11 @@ $('#repositorytype').on('change', function(event) {
       });
     });
   var selectedValue = $('option:selected', this).val(),
-      browseGroup = $('#repoBrowseGroup');
+      browseGroup = $('#repoBrowseGroup'),
+      moduleGroup = $('#repoModuleGroup'),
+      locationGroup = $('#repoLocationGroup');
   browseGroup.show();
   if (selectedValue === 'CVSRepository' || selectedValue === 'BKRepository' || selectedValue === 'ArchRepository') {
-    var moduleGroup = $('#repoModuleGroup');
     moduleGroup.show();
     moduleGroup.attr('required', 'true');
     $('input', moduleGroup).attr('required', true);
@@ -193,12 +194,10 @@ $('#repositorytype').on('change', function(event) {
       anonRoot.show();
       $('input', anonRoot).attr('required', true); 
     } else {
-      var locationGroup = $('#repoLocationGroup');
       locationGroup.show();
       $('input', locationGroup).attr('required', true);
     }
   } else {
-    var locationGroup = $('#repoLocationGroup');
     locationGroup.show();
     $('input', locationGroup).attr('required', true);
   } 
