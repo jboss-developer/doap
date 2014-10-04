@@ -78,36 +78,49 @@ var build_doap = function(event) {
 
   $.each(a, function() {
     if (this.name) {
-      // check to see if it's a spec or version, then create an
+      // check to see if it's a spec, online account or version, then create an
       // object for it and push the object to an array for
       // use in the templates
       if (release_names.indexOf(this.name) !== -1) {
         var release = o.releases[o.releases.length - 1];
         if (containsAll(release_names, Object.keys(release))) {
-          release = {};
-          o.releases.push(release);
+            release = {};
+            o.releases.push(release);
         }
-        release[this.name] = this.value || '';
+
+        if (this.value) {
+          release[this.name] = this.value;
+        }
       } else if (spec_names.indexOf(this.name) !== -1) { 
         var spec = o.specs[o.specs.length - 1];
         if (containsAll(spec_names, Object.keys(spec))) {
-          spec = {};
-          o.specs.push(spec);
+          if (this.value) {
+            spec = {};
+            o.specs.push(spec);
+          }
         }
-        spec[this.name] = this.value || '';
+        if (this.value) {
+          spec[this.name] = this.value;
+        }
       } else if (account_names.indexOf(this.name) !== -1) {
         var account = o.accounts[o.accounts.length - 1];
         if (containsAll(account_names, Object.keys(account))) {
-          account = {};
-          o.accounts.push(account);
+          if (this.value) {
+            account = {};
+            o.accounts.push(account);
+          }
         }
-        account[this.name] = this.value || '';
+        if (this.value) {
+          account[this.name] = this.value;
+        }
       } else if (people_names.indexOf(this.name) !== -1) {
         // people will be handled differently
       } else if ("language".indexOf(this.name)) {
-        o['language'] = $('#language').zmultiselect('getValue').split(",");
+        o.language = $('#language').zmultiselect('getValue');
       } else {
-        o[this.name] = this.value || '';
+        if (this.value) {
+          o[this.name] = this.value;
+        }
       }
     } 
   });

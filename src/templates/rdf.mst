@@ -140,15 +140,15 @@
     <programming-language>{{{.}}}</programming-language>
     {{/language}}
     <vendor>{{{vendor}}}</vendor>
+    {{#specs}}
     <implements>
-      {{#specs}}
       <Specification>
         <name>{{{specName}}}</name>
         <description>{{{specDesc}}}</description>
         <rdfs:seeAlso rdf:resource="{{{seeAlsoURL}}}" />
       </Specification>
-      {{/specs}}
     </implements>
+    {{/specs}}
     <foaf:logo rdf:resource="{{{logoURL}}}" />
     {{#accounts}}
     <foaf:account>
