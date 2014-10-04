@@ -126,6 +126,7 @@
     </release>
     {{/releases}}
     <license rdf:resource="{{{licenseURL}}}" />
+    {{#repositoryType}}
     <repository>
       <{{repositoryType}}>
         {{#repoLocation}}<location rdf:resource="{{{repoLocation}}}" />{{/repoLocation}}{{^repoLocation}}{{/repoLocation}}
@@ -134,6 +135,7 @@
         {{#repoAnonRoot}}<anon-root>{{repoAnonRoot}}</anon-root>{{/repoAnonRoot}}{{^repoAnonRoot}}{{/repoAnonRoot}}
       </{{repositoryType}}>
     </repository>
+    {{/repositoryType}}
     {{#issueDB}}<bug-database rdf:resource="{{{issueDB}}}" />{{/issueDB}}
     {{#wiki}}<wiki rdf:resource="{{{wiki}}}" />{{/wiki}}{{^wiki}}{{/wiki}}
     {{#language}}
