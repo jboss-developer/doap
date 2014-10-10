@@ -47,14 +47,18 @@ form#doap-form(data-abide="ajax")
             .input-container
               label Project License 
                 small Required
-                select#license(name="license", required="")
+                select#licenseURL(name="licenseURL", required="")
                   option(value="") Select One
-                  option(value="LGPL") LGPL
-                  option(value="ASL") ASL
-                  option(value="EPL") EPL
-                  option(value="AGPL") AGPL
-                  option(value="MIT") MIT
-                  option(value="BSD") BSD
+                  option(value="http://opensource.org/licenses/GPL-2.0") GPL 2.0
+                  option(value="http://opensource.org/licenses/GPL-3.0") GPL 3.0
+                  option(value="http://opensource.org/licenses/LGPL-2.1") LGPL 2.1
+                  option(value="http://opensource.org/licenses/LGPL-3.0") LGPL 3.0
+                  option(value="http://opensource.org/licenses/Apache-2.0") Apache 2.0
+                  option(value="http://opensource.org/licenses/EPL-1.0") Eclipse
+                  option(value="http://opensource.org/licenses/AGPL-3.0") AGPL 3.0
+                  option(value="http://opensource.org/licenses/MIT") MIT
+                  option(value="http://opensource.org/licenses/BSD-3-Clause") BSD 3 Clause
+                  option(value="http://opensource.org/licenses/BSD-2-Clause") BSD 2 Clause
             .input-container
               label Repository Type 
                 small Required
