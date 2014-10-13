@@ -4,22 +4,22 @@ form#doap-form(data-abide="ajax")
       h1 DOAP Generator
       ul.tabs(data-tab="", role="tablist")
         li.tab-title.active(role="presentational")
-          a(href="#panel2-1", role="tab", tabindex="0", aria-selected="true", controls="panel2-1") Project
+          a(href="#panel-1", role="tab" aria-selected="true", controls="panel-1") Project
         li.tab-title(role="presentational")
-          a(href="#panel2-2", role="tab", tabindex="0", aria-selected="false", controls="panel2-2") People
+          a(href="#panel-2", role="tab" aria-selected="false", controls="panel-2") People
         li.tab-title(role="presentational")
-          a(href="#panel2-3", role="tab", tabindex="0", aria-selected="false", controls="panel2-3") Versions
+          a(href="#panel-3", role="tab" aria-selected="false", controls="panel-3") Versions
         li.tab-title(role="presentational")
-          a(href="#panel2-4", role="tab", tabindex="0", aria-selected="false", controls="panel2-4") Specs
+          a(href="#panel-4", role="tab" aria-selected="false", controls="panel-4") Specs
         li.tab-title(role="presentational")
-          a(href="#panel2-5", role="tab", tabindex="0", aria-selected="false", controls="panel2-5") Social Media
+          a(href="#panel-5", role="tab" aria-selected="false", controls="panel-5") Social Media
       .tabs-content
-        section#panel2-1.content.active(role="tabpanel", aria-hidden="false")
+        section#panel-1.content.active(role="tabpanel", aria-hidden="false")
           .small-12.columns
             .input-container
               label(for="name") Project Name
                 small required
-                input#name(type="text", name="name", placeholder="Project Name", required="")
+                input#name(type="text", name="name", placeholder="Project Name", required="", tabindex="0")
             .input-container
               label(for="shortdesc") Short Description
                 small required
@@ -73,7 +73,7 @@ form#doap-form(data-abide="ajax")
                   option(value="HgRepository") Mercurial
                   option(value="DarcsRepository") Darcs
             #repoLocationGroup.hide.repository.input-container
-              label Repo URL
+              label Checkout URL
                 small required
                 input(type="url", name="repoLocation", placeholder="Repository URL (.git, svn repo location)")
             #repoModuleGroup.hide.repository
@@ -86,10 +86,23 @@ form#doap-form(data-abide="ajax")
                 input(type="text", name="repoAnonRoot", placeholder="Anon-Root")
             #repoBrowseGroup.hide.repository.input-container
               label Repo Homepage
-                input(type="url", name="repoBrowse", placeholder="Github URL, Bitbucket URL")
+                input(type="url", name="repoBrowse", placeholder="Fisheye, viewcvs, Github URL, Bitbucket URL")
+            //-
+              .input-container
+                label Category of Project
+                  input#category(type="text", name="category", placeholder="Server, library, etc")
             .input-container
-              label Programming Language 
-                select#language(name="language")
+              label Issue Tracker URL
+                input#issueDB(type="url", name="issueDB", placeholder="Issue Tracker URL")
+            .input-container
+              label Wiki URL
+                input#wiki(type="url", name="wiki", placeholder="Wiki URL")
+            .input-container
+              label Mailing List URL
+                input#mailingListURL(type="url", name="mailingListURL", placeholder="Mailing List URL")
+            .input-container
+              label Programming Language
+                select.language-container#language(name="language" multiple="")
                   option(value="Java") Java
                   option(value="C/C++") C/C++
                   option(value="Swift") Swift
