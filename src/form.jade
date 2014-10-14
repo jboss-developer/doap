@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title DOAP generator form
+    link(rel="stylesheet", href="styles/app.css")
+    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css")
+  body
+    include partials/doap-entry.jade
+    script(id="rdf_template" type="text/html")
+      include templates/rdf.mst
+    script(id="version_template" type="text/html")
+      include templates/version.mst
+    script(id="spec_template" type="text/html")
+      include templates/spec.mst
+    script(id="account_template" type="text/html")
+      include templates/account.mst
+    script(src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js")
+    script(src="scripts/all.js")
+

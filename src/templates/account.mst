@@ -1,0 +1,14 @@
+<div class="row">
+  <fieldset>
+    <legend>Account</legend>
+    <label for="serviceHomepage">Service URL
+      <small>Required</small>
+      <input type="url" name="serviceHomepage" placeholder="http://twitter.com" required>
+    </label>
+    <label for="accountName">Account Name
+      <small>Required</small>
+      <input type="text" name="accountName" required>
+    </label>
+    <a class="button remove-item right" href="#">Remove</a>
+  </fieldset>
+</div>

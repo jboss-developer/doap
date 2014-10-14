@@ -1,0 +1,37 @@
+@charset "UTF-8";
+  @import "../../bower_components/foundation/scss/normalize";
+  @import "../../bower_components/foundation/scss/foundation";
+
+.tabs {
+  border: 1px solid;
+  border-bottom: none;
+  border-top-right-radius: 1.5em;
+  background: #EFEFEF;
+}
+.tabs-content {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-bottom-right-radius: 1.5em;
+  border-bottom-left-radius: 1.5em;
+}
+
+button[type="submit"] {
+  background-color: #43ac6a;
+  &:hover {
+    background-color: darken(#43ac6a, 10%);
+  }
+}
+
+.people-container {
+  height: 16rem;
+}
+
+.language-container {
+  height: 13rem;
+}
+.rdf-output {
+  height: 20rem;
+  max-height: 20rem;
+}
+
