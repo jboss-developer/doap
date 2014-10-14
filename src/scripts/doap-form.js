@@ -118,11 +118,13 @@ var build_doap = function(event) {
         }
       } else if (people_names.indexOf(this.name) !== -1) {
         // people will be handled differently
-      } else if ("language".indexOf(this.name)) {
-        o.language = $('#language').zmultiselect('getValue');
       } else {
         if (this.value) {
-          o[this.name] = this.value;
+          if ("language".indexOf(this.name) !== -1) {
+            o.language = $('select[name=language]').val();
+          } else {
+            o[this.name] = this.value;
+          }
         }
       }
     } 

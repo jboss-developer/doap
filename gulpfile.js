@@ -48,7 +48,7 @@ gulp.task('compile-scripts', function() {
 });
 
 gulp.task('compile-css', function() {
-  var files = ['./src/styles/**/*.scss', 'bower_components/foundation-multiselect/zmultiselect/zurb5-multiselect.css'];
+  var files = ['./src/styles/**/*.scss'];
 
   gulp.src(files)
     .pipe(sourcemaps.init())
