@@ -1,24 +1,3 @@
-// Event listener to add a new version
-$('#addVersion').on('click', function(event) {
-  event.preventDefault();
-  $('#insert-version-container').append($('#version_template').text());
-  bindEventForRemoveButtons();
-});
-
-// Event listener to add a new spec
-$('#addSpec').on('click', function(event) {
-  event.preventDefault();
-  $('#insert-spec-container').append($('#spec_template').text());
-  bindEventForRemoveButtons();
-});
-
-// Event listener to add a new spec
-$('#addOnlineAccount').on('click', function(event) {
-  event.preventDefault();
-  $('#insert-account-container').append($('#account_template').text());
-  bindEventForRemoveButtons();
-}); 
-
 $('#addPerson').on('click', function(event) {
   var firstName = $('#first-name'),
       lastName = $('#last-name'),
@@ -60,6 +39,7 @@ $('#addPerson').on('click', function(event) {
   }
 });
 
+// TODO: generify this
 $('#removePerson').on('click', function(event) {
   event.preventDefault();
   $('#people-container :selected').each(function() {this.remove();});
@@ -207,10 +187,4 @@ $('#repositorytype').on('change', function(event) {
     $('input', locationGroup).attr('required', true);
   } 
 });
-
-function bindEventForRemoveButtons() {
-  $('.remove-item').on('click', function(event) {
-    $(event.target).parent().remove();
-  });
-}
 

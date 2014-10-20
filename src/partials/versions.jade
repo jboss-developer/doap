@@ -1,0 +1,18 @@
+.small-6.columns
+  .input-container
+    label Release Name
+      input(type="text", name="releaseName", placeholder="Name")
+  .input-container
+    label Revision Number
+      small Required
+      input(type="text", name="revision", required="")
+  .input-container
+    label Created Date
+      small Required
+      input(type="date", name="created", required="", placeholder="YYYY-MM-DD")
+  a#addVersion.add.button(href="#") Add This Version
+.small-6.columns
+  label Versions Added
+    select.versions-container#versions-container(name="versions-container", multiple="")
+  button#removeVersion.remove.button(type="button") Remove
+
