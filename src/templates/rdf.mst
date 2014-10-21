@@ -119,7 +119,7 @@
     {{#releases}}
     <release>
       <Version>
-        <name>{{{releaseName}}}</name>
+        {{#releaseName}}<name>{{{releaseName}}}</name>{{#releaseName}}
         <revision>{{{revision}}}</revision>
         <created>{{{created}}}</created>
       </Version>
@@ -146,8 +146,8 @@
     <implements>
       <Specification>
         <name>{{{specName}}}</name>
-        <description>{{{specDesc}}}</description>
-        <rdfs:seeAlso rdf:resource="{{{seeAlsoURL}}}" />
+        {{#specDesc}}<description>{{{specDesc}}}</description>{{/specDesc}}
+        {{#seeAlsoURL}}<rdfs:seeAlso rdf:resource="{{{seeAlsoURL}}}" />{{/seeAlsoURL}}
       </Specification>
     </implements>
     {{/specs}}
