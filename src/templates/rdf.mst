@@ -119,7 +119,7 @@
     {{#releases}}
     <release>
       <Version>
-        {{#releaseName}}<name>{{{releaseName}}}</name>{{#releaseName}}
+        {{#releaseName}}<name>{{{releaseName}}}</name>{{/releaseName}}
         <revision>{{{revision}}}</revision>
         <created>{{{created}}}</created>
       </Version>
