@@ -59,6 +59,25 @@ $('#addSpec').on('click', function(event) {
   }
 });
 
+$('#addAccount').on('click', function(event) {
+  var accountName = $('#account-name'),
+      accountHomepage = $('#account-homepage');
+
+  event.preventDefault();
+
+  if (accountName.val().length !== 0 && accountHomepage.val().length !== 0) {
+    // Add to the selection
+    $('#accounts-container').append('<option data-account-name="' + accountName.val() + 
+        '" data-account-homepage="' + accountHomepage.val() + '">' + accountName.val() + 
+        ' ' + accountHomepage.val() + '</option>');
+
+    // Clear the values
+    $.each([accountName, accountHomepage], clearField);
+  } else {
+    $.each([accountName, accountHomepage], invalidateField);
+  }
+});
+
 $('.remove.button').on('click', function(event) {
   event.preventDefault();
   event.stopImmediatePropagation();
