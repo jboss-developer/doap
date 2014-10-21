@@ -156,6 +156,16 @@ var build_doap = function(event) {
       o.specs.push(spec);
   });
 
+  // Adding Accounts
+  $("#accounts-container > option").each(function() {
+    var elm = $(this);
+
+    var account = { accountName : elm.data("account-name"), 
+                 serviceHomepage : elm.data("account-homepage") 
+      };
+      o.accounts.push(account);
+  });
+
   $.each(['releases', 'specs', 'accounts'], function() {
     if (o[this].length === 1 && Object.keys(o[this][0]).length === 0) {
       o[this] = [];
