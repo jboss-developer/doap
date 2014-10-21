@@ -2,19 +2,19 @@ form#doap-form(data-abide="ajax")
   .large-12.columns
     .row
       h1 DOAP Generator
-      ul.tabs(data-tab="", role="tablist")
+      ul.tabs(role="tablist")
         li.tab-title.active(role="presentational")
-          a(href="#panel-1", role="tab" aria-selected="true", controls="panel-1") Project
+          a(href="#project-panel", role="tabbutton" aria-selected="true") Project
         li.tab-title(role="presentational")
-          a(href="#panel-2", role="tab" aria-selected="false", controls="panel-2") People
+          a(href="#people-panel", role="tabbutton" aria-selected="false") People
         li.tab-title(role="presentational")
-          a(href="#panel-3", role="tab" aria-selected="false", controls="panel-3") Versions
+          a(href="#versions-panel", role="tabbutton" aria-selected="false") Versions
         li.tab-title(role="presentational")
-          a(href="#panel-4", role="tab" aria-selected="false", controls="panel-4") Specs
+          a(href="#specs-panel", role="tabbutton" aria-selected="false") Specs
         li.tab-title(role="presentational")
-          a(href="#panel-5", role="tab" aria-selected="false", controls="panel-5") Social Media
+          a(href="#social-media-panel", role="tabbutton" aria-selected="false") Social Media
       .tabs-content
-        section#panel-1.content.active(role="tabpanel", aria-hidden="false")
+        section#project-panel.content.active(role="tabpanel", aria-hidden="false")
           .small-12.columns
             .input-container
               label(for="name") Project Name
@@ -116,13 +116,13 @@ form#doap-form(data-abide="ajax")
                   option(value="Perl") Perl
           .row
             .small-3.columns.small-centered.end.centered
-              a.next.button(href="#") Next Page >>
-        section#panel-2.content(role="tabpanel", aria-hidden="true")
+              a.next.button(href="#people-panel", role="tabbutton") Next Page >>
+        section#people-panel.content(role="tabpanel", aria-hidden="true")
           include people.jade
           .row
             .small-3.columns.small-centered.end.centered
-              a.next.button(href="#") Next Page >>
-        section#panel-3.content(role="tabpanel", aria-hidden="true")
+              a.next.button(href="#versions-panel", role="tabbutton") Next Page >>
+        section#versions-panel.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
             .row
               p
@@ -130,15 +130,16 @@ form#doap-form(data-abide="ajax")
           include versions.jade
           .row
             .small-3.columns.small-centered.end.centered
-              a.next.button(href="#") Next Page >>
-        section#panel-4.content(role="tabpanel", aria-hidden="true")
+              a.next.button(href="#specs-panel", role="tabbutton") Next Page >>
+        section#specs-panel.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
+            .row
               p
                 | Use this page to provide details of specifications the project implements or uses. For example, a JSR number if the project implements it, or an OSIS or IEEE specification used in the project. If don't have any specifications being used or implemented, or do not wish to add them, there is nothing to fill out.
           include specs.jade
           .small-3.columns.small-centered.end.centered
-            a.next.button(href="#") Next Page >>
-        section#panel-5.content(role="tabpanel", aria-hidden="true")
+            a.next.button(href="#social-media-panel", role="tabbutton") Next Page >>
+        section#social-media-panel.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
             .row
               p
