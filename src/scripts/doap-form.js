@@ -138,11 +138,22 @@ var build_doap = function(event) {
   $("#versions-container > option").each(function() {
     var elm = $(this);
 
-      var person = { releaseName : elm.data("release-name"), 
-                     created : elm.data("created"), 
-                     revision : elm.data("revision")
+    var version = { releaseName : elm.data("release-name"), 
+                    created : elm.data("created"), 
+                    revision : elm.data("revision")
       };
-      o.releases.push(person);
+      o.releases.push(version);
+  });
+
+  // Adding Specs
+  $("#specs-container > option").each(function() {
+    var elm = $(this);
+
+    var spec = { specName : elm.data("spec-name"), 
+                 specDesc : elm.data("spec-desc"), 
+                 seeAlsoURL : elm.data("spec-url")
+      };
+      o.specs.push(spec);
   });
 
   $.each(['releases', 'specs', 'accounts'], function() {
