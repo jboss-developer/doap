@@ -87,7 +87,7 @@ $('.remove.button').on('click', function(event) {
 // Event listener to the submit button to generate the DOAP content based 
 // on the form.  
 var build_doap = function(event) {
-  var o = {'releases':[{}], 'specs':[{}], 'accounts':[{}]},
+  var o = {'releases':[], 'specs':[], 'accounts':[]},
       release_names = ['releaseName', 'revision', 'created'],
       spec_names = ['specName', 'specDecs', 'seeAlsoURL'],
       account_names = ['accountName', 'serviceHomepage'],
@@ -103,40 +103,9 @@ var build_doap = function(event) {
       // check to see if it's a spec, online account or version, then create an
       // object for it and push the object to an array for
       // use in the templates
-      if (release_names.indexOf(this.name) !== -1) {
-        var release = o.releases[o.releases.length - 1];
-        if (containsAll(release_names, Object.keys(release))) {
-            release = {};
-            o.releases.push(release);
-        }
-
-        if (this.value) {
-          release[this.name] = this.value;
-        }
-      } else if (spec_names.indexOf(this.name) !== -1) { 
-        var spec = o.specs[o.specs.length - 1];
-        if (containsAll(spec_names, Object.keys(spec))) {
-          if (this.value) {
-            spec = {};
-            o.specs.push(spec);
-          }
-        }
-        if (this.value) {
-          spec[this.name] = this.value;
-        }
-      } else if (account_names.indexOf(this.name) !== -1) {
-        var account = o.accounts[o.accounts.length - 1];
-        if (containsAll(account_names, Object.keys(account))) {
-          if (this.value) {
-            account = {};
-            o.accounts.push(account);
-          }
-        }
-        if (this.value) {
-          account[this.name] = this.value;
-        }
-      } else if (people_names.indexOf(this.name) !== -1) {
-        // people will be handled differently
+      if (people_names.indexOf(this.name) !== -1 || account_names.indexOf(this.name) !== -1 ||
+          spec_names.indexOf(this.name) !== -1 || release_names.indexOf(this.name) !== -1) {
+        // people, accounts, specs, releases will be handled differently
       } else {
         if (this.value) {
           if ("language".indexOf(this.name) !== -1) {
@@ -163,6 +132,17 @@ var build_doap = function(event) {
                      community : elm.data("community")
       };
       o[role].push(person);
+  });
+
+  // Adding Versions
+  $("#versions-container > option").each(function() {
+    var elm = $(this);
+
+      var person = { releaseName : elm.data("release-name"), 
+                     created : elm.data("created"), 
+                     revision : elm.data("revision")
+      };
+      o.releases.push(person);
   });
 
   $.each(['releases', 'specs', 'accounts'], function() {
