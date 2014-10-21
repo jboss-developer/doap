@@ -39,6 +39,26 @@ $('#addVersion').on('click', function(event) {
   }
 });
 
+$('#addSpec').on('click', function(event) {
+  var specName = $('#spec-name'),
+      specDesc = $('#spec-desc'),
+      specUrl = $('#spec-url');
+
+  event.preventDefault();
+
+  if (specName.val().length !== 0) {
+    // Add to the selection
+    $('#specs-container').append('<option data-spec-name="' + specName.val() + 
+        '" data-spec-desc="' + specDesc.val() +'" data-spec-url="' + specUrl.val() + 
+        '">' + specName.val() + '</option>');
+
+    // Clear the values
+    $.each([specName, specDesc, specUrl], clearField);
+  } else {
+    $.each([specName], invalidateField);
+  }
+});
+
 $('.remove.button').on('click', function(event) {
   event.preventDefault();
   event.stopImmediatePropagation();
