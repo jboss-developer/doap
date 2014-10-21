@@ -115,12 +115,12 @@ form#doap-form(data-abide="ajax")
                   option(value="Clojure") Clojure
                   option(value="Perl") Perl
           .row
-            .small-3.columns.small-centered.end.centered
+            .small-6.small-offset-5.columns.end
               a.next.button(href="#people-panel", role="tabbutton") Next Page >>
         section#people-panel.content(role="tabpanel", aria-hidden="true")
           include people.jade
           .row
-            .small-3.columns.small-centered.end.centered
+            .small-6.small-offset-5.columns.end
               a.next.button(href="#versions-panel", role="tabbutton") Next Page >>
         section#versions-panel.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
@@ -129,7 +129,7 @@ form#doap-form(data-abide="ajax")
                 | Use this page to provide details of recent releases. There's no need to provide every single release for the project. For example, you could provide the latest GA release, the latest early-access release from an upcoming GA release and maybe the latest GA release that is available in a current product. If don't have any recent releases, or do not wish to add releases, there is nothing to fill out.
           include versions.jade
           .row
-            .small-3.columns.small-centered.end.centered
+            .small-6.small-offset-5.columns.end
               a.next.button(href="#specs-panel", role="tabbutton") Next Page >>
         section#specs-panel.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
@@ -137,8 +137,9 @@ form#doap-form(data-abide="ajax")
               p
                 | Use this page to provide details of specifications the project implements or uses. For example, a JSR number if the project implements it, or an OSIS or IEEE specification used in the project. If don't have any specifications being used or implemented, or do not wish to add them, there is nothing to fill out.
           include specs.jade
-          .small-3.columns.small-centered.end.centered
-            a.next.button(href="#social-media-panel", role="tabbutton") Next Page >>
+          .row
+            .small-6.small-offset-5.columns.end
+              a.next.button(href="#social-media-panel", role="tabbutton") Next Page >>
         section#social-media-panel.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
             .row
@@ -146,7 +147,7 @@ form#doap-form(data-abide="ajax")
                 | Use this page to add any social media services your project uses. If your project doesn't use social media, or you do not wish to add them, there is nothing to fill out.
           include accounts.jade
           .row
-            .small-3.columns.small-centered.end.centered
+            .small-5.small-offset-5.columns.end
               button#submit-button.button(type="submit") Generate DOAP
 #doap-modal.reveal-modal(data-reveal="")
   a#download-button.button(href="#") Download

@@ -1,3 +1,27 @@
+$('a[role=tabbutton]').on('click', function(event) {
+  event.stopImmediatePropagation();
+  event.preventDefault();
+
+  var tabButton = $('.tabs > li > a[href=' + $(event.target).attr('href') + ']'),
+      currentTab = $('section[role=tabpanel].active'),
+      newTab = $(tabButton.attr('href'));
+
+  $('.tab-title > a').each(function() {
+    $(this).attr('aria-selected', false);
+    $(this).parent().removeClass('active');
+  });
+  tabButton.attr('aria-selected', true);
+  tabButton.parent().addClass('active');
+
+  // Hide current tab
+  currentTab.removeClass('active');
+  currentTab.attr('aria-hidden', true);
+  
+  // show new tab
+  newTab.addClass('active');
+  currentTab.attr('aria-hidden', false);
+});
+
 $('#addPerson').on('click', function(event) {
   var firstName = $('#first-name'),
       lastName = $('#last-name'),
