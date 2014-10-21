@@ -1,15 +1,15 @@
 .small-6.columns
   .input-container
     label Release Name
-      input(type="text", name="releaseName", placeholder="Name")
+      input#version-release-name(type="text", name="release-name", placeholder="Name")
   .input-container
     label Revision Number
       small Required
-      input(type="text", name="revision", required="")
+      input#version-revision(type="text", name="revision", required="")
   .input-container
     label Created Date
       small Required
-      input(type="date", name="created", required="", placeholder="YYYY-MM-DD")
+      input#version-created(type="date", name="created", required="", placeholder="YYYY-MM-DD")
   a#addVersion.add.button(href="#") Add This Version
 .small-6.columns
   label Versions Added

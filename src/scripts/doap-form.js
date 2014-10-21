@@ -13,36 +13,36 @@ $('#addPerson').on('click', function(event) {
         '" data-community="' + communityAccount.val() + '">' + firstName.val() + ' ' + lastName.val() + '</option>');
 
     // Clear the values
-    $.each([firstName, lastName, communityAccount, role], function(entry) {
-      this.val('');
-      this.removeAttr('data-invalid');
-      this.removeAttr('aria-invalid');
-      this.removeClass('error');
-      this.parent().removeClass('error');
-    });
+    $.each([firstName, lastName, communityAccount, role], clearField);
   } else {
-    if (firstName.val().length === 0) {
-      firstName.attr('data-invalid', '');
-      firstName.attr('aria-invalid', true);
-      firstName.parent().addClass("error");
-    } 
-    if (lastName.val().length === 0) {
-      lastName.attr('data-invalid', '');
-      lastName.attr('aria-invalid', true);
-      lastName.parent().addClass("error");
-    } 
-    if (role.val().length === 0) {
-      role.attr('data-invalid', '');
-      role.attr('aria-invalid', true);
-      role.parent().addClass("error");
-    }
+    $.each([firstName, lastName, role], invalidateField);
   }
 });
 
-// TODO: generify this
-$('#removePerson').on('click', function(event) {
+$('#addVersion').on('click', function(event) {
+  var releaseName = $('#version-release-name'),
+      revision = $('#version-revision'),
+      created = $('#version-created');
+
   event.preventDefault();
-  $('#people-container :selected').each(function() {this.remove();});
+
+  if (revision.val().length !== 0 && created.val().length !== 0) {
+    // Add to the selection
+    $('#versions-container').append('<option data-release-name="' + releaseName.val() + 
+        '" data-revision="' + revision.val() +'" data-created="' + created.val() + 
+        '">' + revision.val() + ' ' + releaseName.val() + '</option>');
+
+    // Clear the values
+    $.each([releaseName, revision, created], clearField);
+  } else {
+    $.each([revision, created], invalidateField);
+  }
+});
+
+$('.remove.button').on('click', function(event) {
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  $(event.target).siblings().children().find(':selected').each(function() {this.remove();});
 });
 
 // Event listener to the submit button to generate the DOAP content based 
@@ -110,6 +110,7 @@ var build_doap = function(event) {
     } 
   });
 
+  // TODO: do this for versions, specs, accounts
   // Adding people
   $("#people-container > option").each(function() {
     var elm = $(this),
@@ -125,15 +126,12 @@ var build_doap = function(event) {
       o[role].push(person);
   });
 
-  if (o.releases.length === 1 && Object.keys(o.releases[0]).length === 0) {
-    o.releases = [];
-  }
-  if (o.specs.length === 1 && Object.keys(o.specs[0]).length === 0) {
-    o.specs = [];
-  }
-  if (o.accounts.length === 1 && Object.keys(o.accounts[0]).length === 0) {
-    o.accounts = [];
-  }
+  $.each(['releases', 'specs', 'accounts'], function() {
+    if (o[this].length === 1 && Object.keys(o[this][0]).length === 0) {
+      o[this] = [];
+    }
+  });
+
   var downloadButton = $('#download-button'),
       template = $('#rdf_template').text(),
       doapModal = $('#doap-modal'),
@@ -146,15 +144,7 @@ var build_doap = function(event) {
   return false;
 }; 
 
-$('#doap-form').on('submit valid valid.fndtn.abide', build_doap);
-
-// Utility function to check the existance of all needles with the haystack
-function containsAll(needles, haystack) {
-  for(var i = 0 , len = needles.length; i < len; i++){
-    if($.inArray(needles[i], haystack) === -1) return false;
-  }
-  return true;
-}
+$('#doap-form').on('submit valid valid.fndtn.abide', build_doap); 
 
 $('#repositorytype').on('change', function(event) {
   // Hide everything so we don't get the wrong items if they change
