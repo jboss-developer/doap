@@ -98,8 +98,8 @@ form#doap-form(data-abide="ajax")
               label Wiki URL
                 input#wiki(type="url", name="wiki", placeholder="Wiki URL")
             .input-container
-              label Mailing List URL
-                input#mailingListURL(type="url", name="mailingListURL", placeholder="Mailing List URL")
+              label Mailing List URI
+                input#mailingListURL(type="text", pattern="uri", name="mailingListURL", placeholder="Mailing List subscribe URI (http or mailto)")
             .input-container
               label Project Blog URL
                 input#blogURL(type="url", name="blogURL", placeholder="Blog URL")
