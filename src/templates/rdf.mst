@@ -6,6 +6,7 @@
     <shortdesc>{{{shortdesc}}}</shortdesc>
     <description>{{{desc}}}</description>
     {{#mailingListURL}}<mailing-list rdf:resource="{{{mailingListURL}}}" />{{/mailingListURL}}
+    {{#blogURL}}<foaf:weblog rdf:resource="{{{blogURL}}}"/>{{/blogURL}}
     {{#lead}}
     <maintainer>
       <foaf:Person>
