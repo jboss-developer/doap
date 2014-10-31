@@ -6,7 +6,7 @@
 	xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:foaf="http://xmlns.com/foaf/0.1/" 
 	xmlns:vann="http://purl.org/vocab/vann/"
-	xmlns:rhtdoap="http://www.jboss.org/doap/schema/rht-doap-extension"
+	xmlns:rhtdoap="http://www.jboss.org/schema/doap/rht-doap-extension"
   xmlns:oslc="http://open-services.net/ns/core#"
   xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#">
 
@@ -37,19 +37,10 @@
     <rdfs:subClassOf rdf:resource="http://usefulinc.com/ns/doap#Project" />
   </rdfs:Class>
 
-  <rdf:Property rdf:about="http://www.jboss.org/doap/schema/rht-doap-extension#containsProjects">
+  <rdf:Property rdf:about="http://www.jboss.org/doap/schema/rht-doap-extension#consumesProject">
     <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension" />
-    <rdfs:label xml:lang="en">containsProjects</rdfs:label>
+    <rdfs:label xml:lang="en">consumesProjects</rdfs:label>
     <rdfs:comment xml:lang="en">A list of projects this project consumes</rdfs:comment>
-    <oslc:valueType rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
-    <oslc:occurs rdf:resource="http://open-services.net/ns/core#Zero-or-one" />
-    <rdfs:domain rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension#Project" />
-  </rdf:Property>
-
-  <rdf:Property rdf:about="http://www.jboss.org/doap/schema/rht-doap-extension#containedWithinProjects">
-    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension" />
-    <rdfs:label xml:lang="en">containedWithinProjects</rdfs:label>
-    <rdfs:comment xml:lang="en">A list of projects this projects consuming this project</rdfs:comment>
     <oslc:valueType rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
     <oslc:occurs rdf:resource="http://open-services.net/ns/core#Zero-or-one" />
     <rdfs:domain rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension#Project" />
