@@ -18,7 +18,7 @@
         <foaf:account>
           <foaf:OnlineAccount>
             <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount" />
-            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org" />
+            <foaf:accountServiceHomepage rdf:resource="https://developer.jboss.org/people" />
             <foaf:accountName>{{{community}}}</foaf:accountName>
           </foaf:OnlineAccount>
         </foaf:account>

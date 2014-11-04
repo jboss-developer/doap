@@ -1,0 +1,29 @@
+#doap-modal.reveal-modal(data-reveal="")
+  a#download-button.button(href="#") Download
+  pre
+    code.rdf-output#doap-code
+  a.close-reveal-modal &#215;
+#project-chooser.reveal-modal(data-reveal="")
+  a.close-reveal-modal &#215;
+  h1 Find a Red Hat Sponsored Project
+    .row
+      .large-12.columns
+        p
+          | Selecting a project will pre-populate information that we have.
+    .row
+      .large-12.columns
+        select#searchResults(name="searchResults")
+          option(value="") Select One
+#person-finder.reveal-modal(data-reveal="")
+  a.close-reveal-modal &#215;
+  h1 Find a contributor by searching their name
+    .row
+      .large-12.columns
+        form#person-finder-form
+          input#person-finder-form-name(type="text", placeholder="Name of Person")
+          button Submit
+    .row
+      .large-12.columns
+        select#person-finder-search-results.hide
+          option(value="") Select One
+

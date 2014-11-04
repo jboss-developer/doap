@@ -43,7 +43,7 @@ form#doap-form(data-abide="ajax")
             .input-container
               label Logo URL
                 small required
-                input#logoURL(type="url", name="logoURL", placeholder="http://static.jboss.org/<project_name>/images/<project_name>_200x150.png", required="")
+                input#logoURL(type="url", name="logoURL", value="http://static.jboss.org/<project_name>/images/<project_name>_200x150.png", required="")
             .input-container
               label Project License
                 small required
@@ -152,8 +152,3 @@ form#doap-form(data-abide="ajax")
           .row
             .small-5.small-offset-5.columns.end
               button#submit-button.button(type="submit") Generate DOAP
-#doap-modal.reveal-modal(data-reveal="")
-  a#download-button.button(href="#") Download
-  pre
-    code.rdf-output#doap-code
-  a.close-reveal-modal &#215;
