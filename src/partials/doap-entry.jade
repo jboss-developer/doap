@@ -15,108 +15,7 @@ form#doap-form(data-abide="ajax")
           a(href="#social-media-panel", role="tabbutton" aria-selected="false") Social Media
       .tabs-content
         section#project-panel.content.active(role="tabpanel", aria-hidden="false")
-          .small-12.columns
-            .input-container
-              label(for="name") Project Name
-                small required
-                input#name(type="text", name="name", placeholder="Project Name", required="", tabindex="0")
-            .input-container
-              label(for="shortdesc") Short Description
-                small required
-                input#shortdesc(type="text", name="shortdesc", placeholder="Short Description, one line", required="")
-            .input-container
-              label(for="vendor") Vendor
-                small required
-                select#vendor(name="vendor", required="")
-                  option(value="") Select One
-                  option(value="Red Hat") Red Hat
-                  option(value="Apache") Apache
-                  option(value="Eclipse") Eclipse
-            .input-container
-              label Description
-                small required
-                textarea#desc(name="desc", placeholder="Longer Description", required="" cols="120" rows="10")
-            .input-container
-              label Homepage
-                small required
-                input#homepage(type="url", name="homepage", placeholder="Homepage of the project", required="")
-            .input-container
-              label Logo URL
-                small required
-                input#logoURL(type="url", name="logoURL", value="http://static.jboss.org/<project_name>/images/<project_name>_200x150.png", required="")
-            .input-container
-              label Project License
-                small required
-                select#licenseURL(name="licenseURL", required="")
-                  option(value="") Select One
-                  option(value="http://opensource.org/licenses/GPL-2.0") GPL 2.0
-                  option(value="http://opensource.org/licenses/GPL-3.0") GPL 3.0
-                  option(value="http://opensource.org/licenses/LGPL-2.1") LGPL 2.1
-                  option(value="http://opensource.org/licenses/LGPL-3.0") LGPL 3.0
-                  option(value="http://opensource.org/licenses/Apache-2.0") Apache 2.0
-                  option(value="http://opensource.org/licenses/EPL-1.0") Eclipse
-                  option(value="http://opensource.org/licenses/AGPL-3.0") AGPL 3.0
-                  option(value="http://opensource.org/licenses/MIT") MIT
-                  option(value="http://opensource.org/licenses/BSD-3-Clause") BSD 3 Clause
-                  option(value="http://opensource.org/licenses/BSD-2-Clause") BSD 2 Clause
-            .input-container
-              label Repository Type
-                small required
-                select#repositorytype(name="repositoryType", required="")
-                  option(value="") Select One
-                  option(value="CVSRepository") CVS
-                  option(value="SVNRepository") SVN
-                  option(value="ArchRepository") Arch
-                  option(value="BKRepository") BitKeeper
-                  option(value="GitRepository") Git
-                  option(value="BazaarBranch") Bazar
-                  option(value="HgRepository") Mercurial
-                  option(value="DarcsRepository") Darcs
-            #repoLocationGroup.hide.repository.input-container
-              label Checkout URL
-                small required
-                input(type="url", name="repoLocation", placeholder="Repository URL (.git, svn repo location)")
-            #repoModuleGroup.hide.repository
-              label Module
-                small required
-                input(type="text", name="repoModule", placeholder="Module")
-            #repoAnonRoot.hide.repository.input-container
-              label Anon Root
-                small required
-                input(type="text", name="repoAnonRoot", placeholder="Anon-Root")
-            #repoBrowseGroup.hide.repository.input-container
-              label Repo Homepage
-                input(type="url", name="repoBrowse", placeholder="Fisheye, viewcvs, Github URL, Bitbucket URL")
-            //-
-              .input-container
-                label Category of Project
-                  input#category(type="text", name="category", placeholder="Server, library, etc")
-            .input-container
-              label Issue Tracker URL
-                input#issueDB(type="url", name="issueDB", placeholder="Issue Tracker URL")
-            .input-container
-              label Wiki URL
-                input#wiki(type="url", name="wiki", placeholder="Wiki URL")
-            .input-container
-              label Mailing List URI
-                input#mailingListURL(type="text", pattern="uri", name="mailingListURL", placeholder="Mailing List subscribe URI (http or mailto)")
-            .input-container
-              label Project Blog URL
-                input#blogURL(type="url", name="blogURL", placeholder="Blog URL")
-            .input-container
-              label Programming Language
-                select.language-container#language(name="language" multiple="")
-                  option(value="Java") Java
-                  option(value="C/C++") C/C++
-                  option(value="Swift") Swift
-                  option(value="Objective-C") Objective-C
-                  option(value="HTML5") HTML5
-                  option(value="JavaScript") JavaScript
-                  option(value="Groovy") Groovy
-                  option(value="Ruby") Ruby
-                  option(value="Scala") Scala
-                  option(value="Clojure") Clojure
-                  option(value="Perl") Perl
+          include project.jade
           .row
             .small-6.small-offset-5.columns.end
               a.next.button(href="#people-panel", role="tabbutton") Next Page >>
@@ -152,3 +51,4 @@ form#doap-form(data-abide="ajax")
           .row
             .small-5.small-offset-5.columns.end
               button#submit-button.button(type="submit") Generate DOAP
+
