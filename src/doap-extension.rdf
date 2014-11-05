@@ -6,11 +6,11 @@
 	xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:foaf="http://xmlns.com/foaf/0.1/" 
 	xmlns:vann="http://purl.org/vocab/vann/"
-	xmlns:rhtdoap="http://www.jboss.org/schema/doap/rht-doap-extension"
+	xmlns:rhtdoap="http://www.jboss.org/schema/rdf/doap-extension"
   xmlns:oslc="http://open-services.net/ns/core#"
   xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#">
 
-  <owl:Ontology rdf:about="http://www.jboss.org/doap/schema/rht-doap-extension">
+  <owl:Ontology rdf:about="http://www.jboss.org/schema/rdf/doap-extension">
     <dc:title>Red Hat DOAP</dc:title>
     <dc:description>Red Hat spcefic DOAP extensions</dc:description>
     <dc:creator>Jason Porter</dc:creator>
@@ -19,7 +19,7 @@
     <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date"></dc:issued>
     <!-- <dc:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date"></dc:modified> -->
     <vann:preferredNamespacePrefix>rhtdoap</vann:preferredNamespacePrefix>
-    <vann:preferredNamespaceUri>http://www.jboss.org/doap/schema/rht-doap-extensions</vann:preferredNamespaceUri>
+    <vann:preferredNamespaceUri>http://www.jboss.org/schema/rdf/doap-extension</vann:preferredNamespaceUri>
 
     <foaf:maker>
       <foaf:Person>
@@ -30,47 +30,47 @@
 
   </owl:Ontology>
 
-  <rdfs:Class rdf:about="http://www.jboss.org/doap/schema/rht-doap-extension#Project">
-    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension" />
+  <rdfs:Class rdf:about="http://www.jboss.org/schema/rdf/doap-extension#Project">
+    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/schema/rdf/doap-extension" />
     <rdfs:label xml:lang="en">Project</rdfs:label>
     <rdfs:comment xml:lang="en">A Red Hat sponsored project</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://usefulinc.com/ns/doap#Project" />
   </rdfs:Class>
 
-  <rdf:Property rdf:about="http://www.jboss.org/doap/schema/rht-doap-extension#consumesProject">
-    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension" />
+  <rdf:Property rdf:about="http://www.jboss.org/schema/rdf/doap-extension#consumesProject">
+    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/schema/rdf/doap-extension" />
     <rdfs:label xml:lang="en">consumesProjects</rdfs:label>
     <rdfs:comment xml:lang="en">A list of projects this project consumes</rdfs:comment>
     <oslc:valueType rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
     <oslc:occurs rdf:resource="http://open-services.net/ns/core#Zero-or-one" />
-    <rdfs:domain rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension#Project" />
+    <rdfs:domain rdf:resource="http://www.jboss.org/schema/rdf/doap-extension#Project" />
   </rdf:Property>
 
-  <rdf:Property rdf:about="http://www.jboss.org/doap/schema/rht-doap-extension#status">
-    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension" />
+  <rdf:Property rdf:about="http://www.jboss.org/schema/rdf/doap-extension#status">
+    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/schema/rdf/doap-extension" />
     <rdfs:label xml:lang="en">status</rdfs:label>
     <rdfs:comment xml:lang="en">One of "incubating", "active", "sustained", "retired"</rdfs:comment>
     <rdfs:comment xml:lang="en">Yes, this should be sort of set or collection, but I'm not sure how to do that.</rdfs:comment>
     <oslc:valueType rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
     <oslc:occurs rdf:resource="http://open-services.net/ns/core#Zero-or-one" />
-    <rdfs:domain rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension#Project" />
+    <rdfs:domain rdf:resource="http://www.jboss.org/schema/rdf/doap-extension#Project" />
   </rdf:Property>
 
-  <rdf:Property rdf:about="http://www.jboss.org/doap/schema/rht-doap-extension#userForum">
-    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension" />
+  <rdf:Property rdf:about="http://www.jboss.org/schema/rdf/doap-extension#userForum">
+    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/schema/rdf/doap-extension" />
     <rdfs:label xml:lang="en">userForum</rdfs:label>
     <rdfs:comment xml:lang="en">User forum for discussion of project usage</rdfs:comment>
     <oslc:occurs rdf:resource="http://open-services.net/ns/core#Zero-or-one" />
-    <rdfs:domain rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension#Project" />
+    <rdfs:domain rdf:resource="http://www.jboss.org/schema/rdf/doap-extension#Project" />
     <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
   </rdf:Property>
 
-  <rdf:Property rdf:about="http://www.jboss.org/doap/schema/rht-doap-extension#developerForum">
-    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension" />
+  <rdf:Property rdf:about="http://www.jboss.org/schema/rdf/doap-extension#developerForum">
+    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/schema/rdf/doap-extension" />
     <rdfs:label xml:lang="en">userForum</rdfs:label>
     <rdfs:comment xml:lang="en">User forum for discussion of project usage</rdfs:comment>
     <oslc:occurs rdf:resource="http://open-services.net/ns/core#Zero-or-one" />
-    <rdfs:domain rdf:resource="http://www.jboss.org/doap/schema/rht-doap-extension#Project" />
+    <rdfs:domain rdf:resource="http://www.jboss.org/schema/rdf/doap-extension#Project" />
     <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
   </rdf:Property>
 
