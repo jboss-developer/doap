@@ -17,13 +17,14 @@
 #person-finder.reveal-modal(data-reveal="")
   a.close-reveal-modal &#215;
   h1 Find a contributor by searching their name
-    .row
-      .large-12.columns
-        form#person-finder-form
+  .row.collapse
+    .large-12.columns
+      form#person-finder-form
+        .large-9.columns
           input#person-finder-form-name(type="text", placeholder="Name of Person")
-          button Submit
-    .row
-      .large-12.columns
-        select#person-finder-search-results.hide
-          option(value="") Select One
+        .large-3.columns
+          button.postfix(type="submit") Submit
+  .row
+    .large-12.columns
+      ul.large-block-grid-5#person-finder-search-results
 

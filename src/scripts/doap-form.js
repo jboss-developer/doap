@@ -16,14 +16,20 @@
     event.stopImmediatePropagation();
     event.preventDefault();
 
-    dcp.findPerson($('#person-finder-form-name').val());
-    $('#person-finder-search-results').empty();
-    $('#person-finder-search-results').html('<option value="">Select One</option>');
-    $('#person-finder-search-results').show();
+    dcp.findPerson($('#person-finder-form-name').val()).then(function(data) {
+      var template = '{{#people}}<li class="personItem" data-person-index="{{index}}"><strong>{{name.formatted}}</strong><br>{{sys_content_id}}<br><img src="{{{thumbnailUrl}}}"></li>{{/people}}';
+      $('#person-finder-search-results').empty();
+      $('#person-finder-search-results').html(Mustache.render(template, dcp));
+      $('#person-finder-search-results li').on('click', selectPerson);
+      $('#person-finder-search-results').show();
+    });
   });
 
-  $('#person-finder-search-results').on('change', function(event) {
-    dcp.selectedPerson = dcp.people[$(event.target).find(':selected').data('person')];
+  function selectPerson(event) {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+
+    dcp.selectedPerson = dcp.people[$(event.currentTarget).data('person-index')];
 
     $('#first-name').val(dcp.selectedPerson.name.givenName);
     $('#last-name').val(dcp.selectedPerson.name.familyName);
@@ -32,7 +38,7 @@
     $('#community-account').val(profileUrl.slice(profileUrl.lastIndexOf('/') + 1));
 
     $('#person-finder').foundation('reveal', 'close');
-  });
+  }
 
   $('#searchResults').on('change', function(event) {
     event.stopImmediatePropagation();
@@ -182,6 +188,23 @@
     }
   });
 
+  $('#addConsume').on('click', function(event) {
+    var consumeUrl = $('#consume-url-entry');
+
+    event.preventDefault();
+
+    if (consumeUrl.val().length !== 0) {
+      // Add to the selection
+      $('#consume-container').append('<option data-consume-url="' + consumeUrl.val() + '">' +
+          consumeUrl.val() + '</option>');
+
+      // Clear the values
+      $.each([consumeUrl], clearField);
+    } else {
+      $.each([consumeUrl], invalidateField);
+    }
+  });
+
   $('.remove.button').on('click', function(event) {
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -191,7 +214,7 @@
   // Event listener to the submit button to generate the DOAP content based 
   // on the form.  
   var build_doap = function(event) {
-    var o = {'releases':[], 'specs':[], 'accounts':[]},
+    var o = {'releases':[], 'specs':[], 'accounts':[], 'consumesProject': []},
         release_names = ['releaseName', 'revision', 'created'],
         spec_names = ['specName', 'specDecs', 'seeAlsoURL'],
         account_names = ['accountName', 'serviceHomepage'],
@@ -258,6 +281,13 @@
                    seeAlsoURL : elm.data("spec-url")
         };
         o.specs.push(spec);
+    });
+    
+    // Adding consumes
+    $("#consume-container > option").each(function() {
+      var elm = $(this);
+
+      o.consumesProject.push(elm.data('consume-url'));
     });
 
     // Adding Accounts

@@ -34,7 +34,7 @@ label small, .error > label > small {
   margin-left: 1em;
 }
 
-.people-container, .accounts-container, .specs-container, .versions-container {
+.people-container, .accounts-container, .specs-container, .versions-container, .consume-container {
   height: 16rem;
 }
 
@@ -46,3 +46,6 @@ label small, .error > label > small {
   max-height: 20rem;
 }
 
+.personItem img {
+  cursor : pointer;
+}

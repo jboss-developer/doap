@@ -1,0 +1,11 @@
+.small-6.columns
+  label Project DOAP URL
+    small required
+    input#consume-url-entry(type="url", name="consume-url-entry", placeholder="Project DOAP URL", required="")
+  a#addConsume.add.button(href="#") Add This Project
+.small-6.columns
+  label Projects Consumed
+    select.consume-container#consume-container(name="consume-container", multiple="")
+  button#removeConsume.remove.button(type="button") Remove
+
+

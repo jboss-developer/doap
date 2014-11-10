@@ -4,7 +4,7 @@
   window.dcp = {
     baseUrl: 'https://dcp.jboss.org/v1/rest',
     projects: {},
-    people: {},
+    people: [],
     selectedProject: null,
     selectedPerson: null,
 
@@ -23,26 +23,22 @@
       });
     },
 
+    // TODO: Maybe this needs to be a promise
     findPerson: function(name) {
-      $.ajax({
+      return $.ajax({
         url: dcp.baseUrl + '/search', 
         traditional: true,
         data: {
           "sys_type": 'contributor_profile',
           "query": name, 
-          "field": ["profileUrl", "name", "sys_content_id"]
+          "field": ["profileUrl", "name", "sys_content_id", "thumbnailUrl"]
         }
       }) 
-      .done(function(data) {
-        // TODO: This should be done elsewhere also
-        console.info(data);
-        var template = '{{#hits}}<option data-person="{{fields.sys_content_id}}">{{fields.name.formatted}}</option>{{/hits}}';
-        data.hits.hits.map(function(current, index) { 
-          this[current.fields.sys_content_id] = current.fields;
-          return this;
-        }, dcp.people);
-
-        $('#person-finder-search-results').append(Mustache.render(template, data.hits));
+      .then(function(data) {
+        dcp.people = data.hits.hits.map(function(current, index) { 
+          current.fields.index = index;
+          return current.fields;
+        });
       });
     }
   };

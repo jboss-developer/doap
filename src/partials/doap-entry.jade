@@ -12,6 +12,8 @@ form#doap-form(data-abide="ajax")
         li.tab-title(role="presentational")
           a(href="#specs-panel", role="tabbutton" aria-selected="false") Specs
         li.tab-title(role="presentational")
+          a(href="#consumes-panel", role="tabbutton" aria-selected="false") Consumes
+        li.tab-title(role="presentational")
           a(href="#social-media-panel", role="tabbutton" aria-selected="false") Social Media
       .tabs-content
         section#project-panel.content.active(role="tabpanel", aria-hidden="false")
@@ -39,6 +41,15 @@ form#doap-form(data-abide="ajax")
               p
                 | Use this page to provide details of specifications the project implements or uses. For example, a JSR number if the project implements it, or an OSIS or IEEE specification used in the project. If don't have any specifications being used or implemented, or do not wish to add them, there is nothing to fill out.
           include specs.jade
+          .row
+            .small-6.small-offset-5.columns.end
+              a.next.button(href="#consumes-panel", role="tabbutton") Next Page >>
+        section#consumes-panel.content(role="tabpanel", aria-hidden="true")
+          .small-12.columns
+            .row
+              p
+                | Please provide a list of doap urls for other projects that are consumed by this project, if any.
+          include consumes.jade
           .row
             .small-6.small-offset-5.columns.end
               a.next.button(href="#social-media-panel", role="tabbutton") Next Page >>
