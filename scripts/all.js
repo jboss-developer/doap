@@ -16421,27 +16421,21 @@ $.fn.zmultiselect = function(methodOrOptions) {
 
   window.dcp = {
     baseUrl: 'https://dcp.jboss.org/v1/rest',
-    projects: {},
+    projects: [],
     people: [],
     selectedProject: null,
     selectedPerson: null,
 
     searchProject: function() {
-      $.get(dcp.baseUrl + '/suggestions/project', 
+      return $.get(dcp.baseUrl + '/suggestions/project', 
         {query: '_exists_:archived OR _missing_:archived', size: 500, field: '_source'})
-      .done(function(data) {
-        // TODO: this stuff needs to be done in a different function, searchProject should just set dcp.projects
-        var template = '{{#hits}}<option data-project="{{fields.sys_project}}">{{_source.projectName}}</option>{{/hits}}';
-        data.responses[0].hits.hits.map(function(current, index) { 
-          this[current.fields.sys_project] = current._source;
-          return this;
-        }, dcp.projects);
-
-        $('#searchResults').append(Mustache.render(template, data.responses[0].hits));
+      .then(function(data) {
+        dcp.projects = data.responses[0].hits.hits.map(function(current, index) { 
+          return current._source;
+        }); 
       });
     },
 
-    // TODO: Maybe this needs to be a promise
     findPerson: function(name) {
       return $.ajax({
         url: dcp.baseUrl + '/search', 
@@ -16466,7 +16460,21 @@ $.fn.zmultiselect = function(methodOrOptions) {
 (function($, window, document, undefined) {
   'use strict';
 
-  $(document).on('open.fndtn.reveal', '[data-reveal]', dcp.searchProject());
+  $('#project-chooser').on('open.fndtn.reveal', (function () {
+    dcp.searchProject().then(function() {
+      dcp.projects = dcp.projects.sort(function(a,b) {
+        if (a.sys_project > b.sys_project)
+          return 1;
+        if (a.sys_project < b.sys_project)
+          return -1;
+        return 0;
+      });
+    })
+    .then(function() {
+      var template = '{{#projects}}<option data-project="{{sys_project}}">{{projectName}}</option>{{/projects}}';
+      $('#searchResults').append(Mustache.render(template, dcp));
+    });
+  })());
 
   $('#findPerson').on('click', function(event) {
     event.stopImmediatePropagation();
@@ -16509,7 +16517,8 @@ $.fn.zmultiselect = function(methodOrOptions) {
     event.stopImmediatePropagation();
     event.preventDefault();
 
-    dcp.selectedProject = dcp.projects[$(event.target).find(':selected').data('project')];
+    var selectProjectName = $(event.target).find(':selected').data('project');
+    dcp.selectedProject = dcp.projects.filter(function(project){return project.sys_project == selectProjectName;})[0];
     // TODO: fill in page info
     $('#name').val(dcp.selectedProject.sys_project_name);
     $('#homepage').val(dcp.selectedProject.sys_url_view);
