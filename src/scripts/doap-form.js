@@ -1,7 +1,21 @@
 (function($, window, document, undefined) {
   'use strict';
 
-  $(document).on('open.fndtn.reveal', '[data-reveal]', dcp.searchProject());
+  $('#project-chooser').on('open.fndtn.reveal', (function () {
+    dcp.searchProject().then(function() {
+      dcp.projects = dcp.projects.sort(function(a,b) {
+        if (a.sys_project > b.sys_project)
+          return 1;
+        if (a.sys_project < b.sys_project)
+          return -1;
+        return 0;
+      });
+    })
+    .then(function() {
+      var template = '{{#projects}}<option data-project="{{sys_project}}">{{projectName}}</option>{{/projects}}';
+      $('#searchResults').append(Mustache.render(template, dcp));
+    });
+  })());
 
   $('#findPerson').on('click', function(event) {
     event.stopImmediatePropagation();
@@ -44,7 +58,8 @@
     event.stopImmediatePropagation();
     event.preventDefault();
 
-    dcp.selectedProject = dcp.projects[$(event.target).find(':selected').data('project')];
+    var selectProjectName = $(event.target).find(':selected').data('project');
+    dcp.selectedProject = dcp.projects.filter(function(project){return project.sys_project == selectProjectName;})[0];
     // TODO: fill in page info
     $('#name').val(dcp.selectedProject.sys_project_name);
     $('#homepage').val(dcp.selectedProject.sys_url_view);
