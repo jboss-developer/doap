@@ -6,14 +6,19 @@
 #project-chooser.reveal-modal(data-reveal="")
   a.close-reveal-modal &#215;
   h1 Find a Red Hat Sponsored Project
-    .row
-      .large-12.columns
-        p
-          | Selecting a project will pre-populate information that we have.
-    .row
-      .large-12.columns
-        select#searchResults(name="searchResults")
-          option(value="") Select One
+  .row
+    .large-12.columns
+      p
+        | To help get you started creating the DOAP file for your project, 
+        | please find and select the project below. Selecting a project 
+        | will populate known information into the form. Should you choose 
+        | to start from scratch, simply closing this modal (ESC or the 'X' 
+        | above) or clicking outside of it will allow you start filling in the 
+        | a blank form.
+  .row
+    .large-12.columns
+      select#searchResults(name="searchResults")
+        option(value="") Select One
 #person-finder.reveal-modal(data-reveal="")
   a.close-reveal-modal &#215;
   h1 Find a contributor by searching their name
