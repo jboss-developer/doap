@@ -67,8 +67,8 @@
 
   <rdf:Property rdf:about="http://www.jboss.org/schema/rdf/doap-extension#developerForum">
     <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/schema/rdf/doap-extension" />
-    <rdfs:label xml:lang="en">userForum</rdfs:label>
-    <rdfs:comment xml:lang="en">User forum for discussion of project usage</rdfs:comment>
+    <rdfs:label xml:lang="en">developerForum</rdfs:label>
+    <rdfs:comment xml:lang="en">Developer forum for discussion of project usage</rdfs:comment>
     <oslc:occurs rdf:resource="http://open-services.net/ns/core#Zero-or-one" />
     <rdfs:domain rdf:resource="http://www.jboss.org/schema/rdf/doap-extension#Project" />
     <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
