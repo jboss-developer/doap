@@ -8,10 +8,9 @@
     {{#mailingListURL}}<mailing-list rdf:resource="{{{mailingListURL}}}" />{{/mailingListURL}}
     {{#blogURL}}<foaf:weblog rdf:resource="{{{blogURL}}}"/>{{/blogURL}}
     {{#lead}}
-    <maintainer>
+    <rhtdoap:lead>
       <foaf:Person>
         <foaf:name>{{{firstName}}} {{{lastName}}}</foaf:name>
-        <foaf:status>Project Lead</foaf:status>
         <foaf:firstName>{{{firstName}}}</foaf:firstName>
         <foaf:lastName>{{{lastName}}}</foaf:lastName>
         {{#community}}
@@ -24,7 +23,7 @@
         </foaf:account>
         {{/community}}
       </foaf:Person>
-    </maintainer>
+    </rhtdoap:lead>
     {{/lead}}
     {{#developer}}
     <developer>

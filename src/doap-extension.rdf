@@ -74,4 +74,12 @@
     <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
   </rdf:Property>
 
+  <rdf:Property rdf:about="http://www.jboss.org/schema/rdf/doap-extension#lead">
+    <rdfs:isDefinedBy rdf:resource="http://www.jboss.org/schema/rdf/doap-extension" />
+    <rdfs:label xml:lang="en">lead</rdfs:label>
+    <rdfs:comment xml:lang="en">Project Lead</rdfs:comment>
+    <rdfs:domain rdf:resource="http://www.jboss.org/schema/rdf/doap-extension#Project" />
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+  </rdf:Property>
+
 </rdf:RDF>
