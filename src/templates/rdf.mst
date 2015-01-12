@@ -43,6 +43,24 @@
       </foaf:Person>
     </developer>
     {{/developer}}
+    {{#maintainer}}
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>{{{firstName}}} {{{lastName}}}</foaf:name>
+        <foaf:firstName>{{{firstName}}}</foaf:firstName>
+        <foaf:lastName>{{{lastName}}}</foaf:lastName>
+        {{#community}}
+        <foaf:account>
+          <foaf:OnlineAccount>
+            <rdf:type rdf:resource="http://xmln.com/foaf/0.1/OnlineAccount" />
+            <foaf:accountServiceHomepage rdf:resource="https://community.jboss.org" />
+            <foaf:accountName>{{{community}}}</foaf:accountName>
+          </foaf:OnlineAccount>
+        </foaf:account>
+        {{/community}}
+      </foaf:Person>
+    </maintainer>
+    {{/maintainer}}
     {{#documenter}}
     <documenter>
       <foaf:Person>
