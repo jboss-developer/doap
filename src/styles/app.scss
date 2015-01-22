@@ -23,7 +23,18 @@ button[type="submit"] {
   }
 }
 
-.people-container {
+.button, button {
+  z-index: 10;
+}
+
+label small, .error > label > small {
+  font-weight: 700;
+  //color: red;
+  font-size: 75%;
+  margin-left: 1em;
+}
+
+.people-container, .accounts-container, .specs-container, .versions-container {
   height: 16rem;
 }
 

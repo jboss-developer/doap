@@ -1,0 +1,18 @@
+.small-6.columns
+  label Service
+    small required
+    select#account-homepage
+      option(value="") Select One
+      option(value="https://www.twitter.com") Twitter
+      option(value="https://plus.google.com") Google Plus
+      option(value="https://www.facebook.com") FaceBook
+      option(value="https://www.linkedin.com") LinkedIn
+  label Account Name
+    small required
+    input#account-name(type="text", name="accountName", required="")
+  a#addAccount.add.button(href="#") Add Account
+.small-6.columns
+  label Accounts Added
+    select.accounts-container#accounts-container(name="accounts-container", multiple="")
+  button#removeAccount.remove.button(type="button") Remove
+

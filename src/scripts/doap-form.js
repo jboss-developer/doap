@@ -1,23 +1,26 @@
-// Event listener to add a new version
-$('#addVersion').on('click', function(event) {
+$('a[role=tabbutton]').on('click', function(event) {
+  event.stopImmediatePropagation();
   event.preventDefault();
-  $('#insert-version-container').append($('#version_template').text());
-  bindEventForRemoveButtons();
-});
 
-// Event listener to add a new spec
-$('#addSpec').on('click', function(event) {
-  event.preventDefault();
-  $('#insert-spec-container').append($('#spec_template').text());
-  bindEventForRemoveButtons();
-});
+  var tabButton = $('.tabs > li > a[href=' + $(event.target).attr('href') + ']'),
+      currentTab = $('section[role=tabpanel].active'),
+      newTab = $(tabButton.attr('href'));
 
-// Event listener to add a new spec
-$('#addOnlineAccount').on('click', function(event) {
-  event.preventDefault();
-  $('#insert-account-container').append($('#account_template').text());
-  bindEventForRemoveButtons();
-}); 
+  $('.tab-title > a').each(function() {
+    $(this).attr('aria-selected', false);
+    $(this).parent().removeClass('active');
+  });
+  tabButton.attr('aria-selected', true);
+  tabButton.parent().addClass('active');
+
+  // Hide current tab
+  currentTab.removeClass('active');
+  currentTab.attr('aria-hidden', true);
+  
+  // show new tab
+  newTab.addClass('active');
+  currentTab.attr('aria-hidden', false);
+});
 
 $('#addPerson').on('click', function(event) {
   var firstName = $('#first-name'),
@@ -34,41 +37,81 @@ $('#addPerson').on('click', function(event) {
         '" data-community="' + communityAccount.val() + '">' + firstName.val() + ' ' + lastName.val() + '</option>');
 
     // Clear the values
-    $.each([firstName, lastName, communityAccount, role], function(entry) {
-      this.val('');
-      this.removeAttr('data-invalid');
-      this.removeAttr('aria-invalid');
-      this.removeClass('error');
-      this.parent().removeClass('error');
-    });
+    $.each([firstName, lastName, communityAccount, role], clearField);
   } else {
-    if (firstName.val().length === 0) {
-      firstName.attr('data-invalid', '');
-      firstName.attr('aria-invalid', true);
-      firstName.parent().addClass("error");
-    } 
-    if (lastName.val().length === 0) {
-      lastName.attr('data-invalid', '');
-      lastName.attr('aria-invalid', true);
-      lastName.parent().addClass("error");
-    } 
-    if (role.val().length === 0) {
-      role.attr('data-invalid', '');
-      role.attr('aria-invalid', true);
-      role.parent().addClass("error");
-    }
+    $.each([firstName, lastName, role], invalidateField);
   }
 });
 
-$('#removePerson').on('click', function(event) {
+$('#addVersion').on('click', function(event) {
+  var releaseName = $('#version-release-name'),
+      revision = $('#version-revision'),
+      created = $('#version-created');
+
   event.preventDefault();
-  $('#people-container :selected').each(function() {this.remove();});
+
+  if (revision.val().length !== 0 && created.val().length !== 0) {
+    // Add to the selection
+    $('#versions-container').append('<option data-release-name="' + releaseName.val() + 
+        '" data-revision="' + revision.val() +'" data-created="' + created.val() + 
+        '">' + revision.val() + ' ' + releaseName.val() + '</option>');
+
+    // Clear the values
+    $.each([releaseName, revision, created], clearField);
+  } else {
+    $.each([revision, created], invalidateField);
+  }
+});
+
+$('#addSpec').on('click', function(event) {
+  var specName = $('#spec-name'),
+      specDesc = $('#spec-desc'),
+      specUrl = $('#spec-url');
+
+  event.preventDefault();
+
+  if (specName.val().length !== 0) {
+    // Add to the selection
+    $('#specs-container').append('<option data-spec-name="' + specName.val() + 
+        '" data-spec-desc="' + specDesc.val() +'" data-spec-url="' + specUrl.val() + 
+        '">' + specName.val() + '</option>');
+
+    // Clear the values
+    $.each([specName, specDesc, specUrl], clearField);
+  } else {
+    $.each([specName], invalidateField);
+  }
+});
+
+$('#addAccount').on('click', function(event) {
+  var accountName = $('#account-name'),
+      accountHomepage = $('#account-homepage');
+
+  event.preventDefault();
+
+  if (accountName.val().length !== 0 && accountHomepage.val().length !== 0) {
+    // Add to the selection
+    $('#accounts-container').append('<option data-account-name="' + accountName.val() + 
+        '" data-account-homepage="' + accountHomepage.val() + '">' + accountName.val() + 
+        ' ' + accountHomepage.val() + '</option>');
+
+    // Clear the values
+    $.each([accountName, accountHomepage], clearField);
+  } else {
+    $.each([accountName, accountHomepage], invalidateField);
+  }
+});
+
+$('.remove.button').on('click', function(event) {
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  $(event.target).siblings().children().find(':selected').each(function() {this.remove();});
 });
 
 // Event listener to the submit button to generate the DOAP content based 
 // on the form.  
 var build_doap = function(event) {
-  var o = {'releases':[{}], 'specs':[{}], 'accounts':[{}]},
+  var o = {'releases':[], 'specs':[], 'accounts':[]},
       release_names = ['releaseName', 'revision', 'created'],
       spec_names = ['specName', 'specDecs', 'seeAlsoURL'],
       account_names = ['accountName', 'serviceHomepage'],
@@ -84,40 +127,9 @@ var build_doap = function(event) {
       // check to see if it's a spec, online account or version, then create an
       // object for it and push the object to an array for
       // use in the templates
-      if (release_names.indexOf(this.name) !== -1) {
-        var release = o.releases[o.releases.length - 1];
-        if (containsAll(release_names, Object.keys(release))) {
-            release = {};
-            o.releases.push(release);
-        }
-
-        if (this.value) {
-          release[this.name] = this.value;
-        }
-      } else if (spec_names.indexOf(this.name) !== -1) { 
-        var spec = o.specs[o.specs.length - 1];
-        if (containsAll(spec_names, Object.keys(spec))) {
-          if (this.value) {
-            spec = {};
-            o.specs.push(spec);
-          }
-        }
-        if (this.value) {
-          spec[this.name] = this.value;
-        }
-      } else if (account_names.indexOf(this.name) !== -1) {
-        var account = o.accounts[o.accounts.length - 1];
-        if (containsAll(account_names, Object.keys(account))) {
-          if (this.value) {
-            account = {};
-            o.accounts.push(account);
-          }
-        }
-        if (this.value) {
-          account[this.name] = this.value;
-        }
-      } else if (people_names.indexOf(this.name) !== -1) {
-        // people will be handled differently
+      if (people_names.indexOf(this.name) !== -1 || account_names.indexOf(this.name) !== -1 ||
+          spec_names.indexOf(this.name) !== -1 || release_names.indexOf(this.name) !== -1) {
+        // people, accounts, specs, releases will be handled differently
       } else {
         if (this.value) {
           if ("language".indexOf(this.name) !== -1) {
@@ -130,6 +142,7 @@ var build_doap = function(event) {
     } 
   });
 
+  // TODO: do this for versions, specs, accounts
   // Adding people
   $("#people-container > option").each(function() {
     var elm = $(this),
@@ -145,15 +158,44 @@ var build_doap = function(event) {
       o[role].push(person);
   });
 
-  if (o.releases.length === 1 && Object.keys(o.releases[0]).length === 0) {
-    o.releases = [];
-  }
-  if (o.specs.length === 1 && Object.keys(o.specs[0]).length === 0) {
-    o.specs = [];
-  }
-  if (o.accounts.length === 1 && Object.keys(o.accounts[0]).length === 0) {
-    o.accounts = [];
-  }
+  // Adding Versions
+  $("#versions-container > option").each(function() {
+    var elm = $(this);
+
+    var version = { releaseName : elm.data("release-name"), 
+                    created : elm.data("created"), 
+                    revision : elm.data("revision")
+      };
+      o.releases.push(version);
+  });
+
+  // Adding Specs
+  $("#specs-container > option").each(function() {
+    var elm = $(this);
+
+    var spec = { specName : elm.data("spec-name"), 
+                 specDesc : elm.data("spec-desc"), 
+                 seeAlsoURL : elm.data("spec-url")
+      };
+      o.specs.push(spec);
+  });
+
+  // Adding Accounts
+  $("#accounts-container > option").each(function() {
+    var elm = $(this);
+
+    var account = { accountName : elm.data("account-name"), 
+                 serviceHomepage : elm.data("account-homepage") 
+      };
+      o.accounts.push(account);
+  });
+
+  $.each(['releases', 'specs', 'accounts'], function() {
+    if (o[this].length === 1 && Object.keys(o[this][0]).length === 0) {
+      o[this] = [];
+    }
+  });
+
   var downloadButton = $('#download-button'),
       template = $('#rdf_template').text(),
       doapModal = $('#doap-modal'),
@@ -166,15 +208,7 @@ var build_doap = function(event) {
   return false;
 }; 
 
-$('#doap-form').on('submit valid valid.fndtn.abide', build_doap);
-
-// Utility function to check the existance of all needles with the haystack
-function containsAll(needles, haystack) {
-  for(var i = 0 , len = needles.length; i < len; i++){
-    if($.inArray(needles[i], haystack) === -1) return false;
-  }
-  return true;
-}
+$('#doap-form').on('submit valid valid.fndtn.abide', build_doap); 
 
 $('#repositorytype').on('change', function(event) {
   // Hide everything so we don't get the wrong items if they change
@@ -207,10 +241,4 @@ $('#repositorytype').on('change', function(event) {
     $('input', locationGroup).attr('required', true);
   } 
 });
-
-function bindEventForRemoveButtons() {
-  $('.remove-item').on('click', function(event) {
-    $(event.target).parent().remove();
-  });
-}
 

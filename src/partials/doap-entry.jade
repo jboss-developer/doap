@@ -2,19 +2,19 @@ form#doap-form(data-abide="ajax")
   .large-12.columns
     .row
       h1 DOAP Generator
-      ul.tabs(data-tab="", role="tablist")
+      ul.tabs(role="tablist")
         li.tab-title.active(role="presentational")
-          a(href="#panel-1", role="tab" aria-selected="true", controls="panel-1") Project
+          a(href="#project-panel", role="tabbutton" aria-selected="true") Project
         li.tab-title(role="presentational")
-          a(href="#panel-2", role="tab" aria-selected="false", controls="panel-2") People
+          a(href="#people-panel", role="tabbutton" aria-selected="false") People
         li.tab-title(role="presentational")
-          a(href="#panel-3", role="tab" aria-selected="false", controls="panel-3") Versions
+          a(href="#versions-panel", role="tabbutton" aria-selected="false") Versions
         li.tab-title(role="presentational")
-          a(href="#panel-4", role="tab" aria-selected="false", controls="panel-4") Specs
+          a(href="#specs-panel", role="tabbutton" aria-selected="false") Specs
         li.tab-title(role="presentational")
-          a(href="#panel-5", role="tab" aria-selected="false", controls="panel-5") Social Media
+          a(href="#social-media-panel", role="tabbutton" aria-selected="false") Social Media
       .tabs-content
-        section#panel-1.content.active(role="tabpanel", aria-hidden="false")
+        section#project-panel.content.active(role="tabpanel", aria-hidden="false")
           .small-12.columns
             .input-container
               label(for="name") Project Name
@@ -115,63 +115,39 @@ form#doap-form(data-abide="ajax")
                   option(value="Clojure") Clojure
                   option(value="Perl") Perl
           .row
-            .small-3.columns.small-centered.end.centered
-              a.next.button(href="#") Next Page >>
-        section#panel-2.content(role="tabpanel", aria-hidden="true")
-          .small-6.columns
-            .input-container
-              label First Name
-                small required
-                input#first-name(type="text", name="first-name", placeholder="First Name")
-            .input-container
-              label Last Name
-                small required
-                input#last-name(type="text", name="last-name", placeholder="Last Name")
-            .input-container
-              label JBoss Community Account
-                input#community-account(type="text", name="community-account", placeholder="JBoss Community Account Username")
-            .input-container
-              label Role within the project (must have at least one Lead)
-                small required
-                select#role(name="role")
-                  option(value="") Select one
-                  option(value="lead") Lead
-                  option(value="documenter") Documenter
-                  option(value="tester") Tester
-                  option(value="developer") Developer
-                  option(value="helper") Helper
-                  option(value="translator") Translator
-            a#addPerson.button(href="#") Add This Person
-          .small-6.columns
-            label(for="people-container") People Added
-            select.people-container#people-container(name="people-container", multiple="")
-            button#removePerson.button(type="button") Remove
+            .small-6.small-offset-5.columns.end
+              a.next.button(href="#people-panel", role="tabbutton") Next Page >>
+        section#people-panel.content(role="tabpanel", aria-hidden="true")
+          include people.jade
           .row
-            .small-3.columns.small-centered.end.centered
-              a.next.button(href="#") Next Page >>
-        section#panel-3.content(role="tabpanel", aria-hidden="true")
+            .small-6.small-offset-5.columns.end
+              a.next.button(href="#versions-panel", role="tabbutton") Next Page >>
+        section#versions-panel.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
-            #insert-version-container.container
             .row
-              a#addVersion.button(href="#") Add Another Version
+              p
+                | Use this page to provide details of recent releases. There's no need to provide every single release for the project. For example, you could provide the latest GA release, the latest early-access release from an upcoming GA release and maybe the latest GA release that is available in a current product. If don't have any recent releases, or do not wish to add releases, there is nothing to fill out.
+          include versions.jade
           .row
-            .small-3.columns.small-centered.end.centered
-              a.next.button(href="#") Next Page >>
-        section#panel-4.content(role="tabpanel", aria-hidden="true")
+            .small-6.small-offset-5.columns.end
+              a.next.button(href="#specs-panel", role="tabbutton") Next Page >>
+        section#specs-panel.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
-            #insert-spec-container.container
             .row
-              a#addSpec.button(href="#") Add Another Spec
+              p
+                | Use this page to provide details of specifications the project implements or uses. For example, a JSR number if the project implements it, or an OSIS or IEEE specification used in the project. If don't have any specifications being used or implemented, or do not wish to add them, there is nothing to fill out.
+          include specs.jade
           .row
-            .small-3.columns.small-centered.end.centered
-              a.next.button(href="#") Next Page >>
-        section#panel-5.content(role="tabpanel", aria-hidden="true")
+            .small-6.small-offset-5.columns.end
+              a.next.button(href="#social-media-panel", role="tabbutton") Next Page >>
+        section#social-media-panel.content(role="tabpanel", aria-hidden="true")
           .small-12.columns
-            #insert-account-container.container
             .row
-              a#addOnlineAccount.button(herf="#") Add Another Online Account
+              p
+                | Use this page to add any social media services your project uses. If your project doesn't use social media, or you do not wish to add them, there is nothing to fill out.
+          include accounts.jade
           .row
-            .small-3.columns.small-centered.end.centered
+            .small-5.small-offset-5.columns.end
               button#submit-button.button(type="submit") Generate DOAP
 #doap-modal.reveal-modal(data-reveal="")
   a#download-button.button(href="#") Download
